@@ -1,42 +1,65 @@
-// Make sure we got a filename on the command line.
-if (process.argv.length < 3) {
-  console.log('Usage: node ' + process.argv[1] + ' FILENAME');
-  process.exit(1);
-}
-// Read the file and print its contents.
-var fs = require('fs')
-  , filename = process.argv[2];
+Generator = {
+  getCode: function() {
+    // Make sure we got a filename on the command line.
+    if (process.argv.length < 3) {
+      process.exit(1);
+    }
+    // Read the file and print its contents.
+    var fs = require('fs')
+    var filename = process.argv[2];
 
+    fs.readFile(filename, 'utf8', this.handleFile(filename));
+  },
 
-handleFile = function(err, data) {
-  if (err) throw err;
-  console.log('OK: ' + filename);
-  main(data)
-}
+  handleFile: function(filename) {
+    that = this;
+    return function(err, data) {
+      if (err) throw err;
+      that.runTransformations(data)
+    }
+  },
 
-fs.readFile(filename, 'utf8', handleFile);
-
-write_to_file = function(object) {
-  var fs = require('fs');
-  fs.writeFile("output.ast", JSON.stringify(object), function(err) {
+  write_to_file: function(string) {
+    var fs = require('fs');
+    fs.writeFile("output.js.jsx", string, function(err) {
       if(err) {
-          return console.log(err);
       }
-      console.log("The file was saved!");
-  }); 
+    }); 
+  },
+
+  parseWithBabylon: function(code) {
+    var input = code;
+    var output = require("babylon").parse(input, {
+      sourceType: "script",
+
+      plugins: [
+        "jsx",
+        "flow"
+      ]
+    });
+    this.write_to_file(output)
+  },
+
+  recast: require('recast'),
+
+  parseWithRecast: function(code) {
+    return this.recast.parse(code);
+  },
+
+  getAst: function() {
+    this.getCode();
+    return this.code
+  },
+
+  runTransformations: function(code) {
+    var ast = this.parseWithRecast(code)
+    var transformed = require('./transformations.js').run(ast)
+    this.write_to_file(this.recast.print(transformed).code)
+  },
+
+  getTransformedCode: function() {
+    return this.recast.print(this.getAst()).code;
+  }
 }
 
-main = function(code) {
-  var input = code;
-  var output = require("babylon").parse(input, {
-    // parse in strict mode and allow module declarations
-    sourceType: "script",
-
-    plugins: [
-      // enable jsx and flow syntax
-      "jsx",
-      "flow"
-    ]
-  });
-  write_to_file(output)
-};
+Generator.getTransformedCode()
