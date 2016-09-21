@@ -1,7 +1,8 @@
 Transformer = {
   transform: function(ast) {
     this.ast = ast
-    this.getComponent(ast).clean()
+    component = this.getComponent(ast)
+    component.clean()
     return this.ast
   },
 
@@ -9,11 +10,7 @@ Transformer = {
   component: {},
   
   getComponent: function() {
-    require('./component.js').from_ast(this.ast)
-  },
-
-  isComponent: function() {
-    
+    return this.component = require('./component.js').fromAst(this.ast)
   },
 
   renderMethod: function() {

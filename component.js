@@ -1,14 +1,22 @@
-Component = {
-  from_ast: function(ast) {
-    
-  },
+function Component(ast) {
+  this.ast = ast
+}
 
-  clean: function(ast) {
-    this.ast = ast.program.body[0]
-    return ast
-  },
+Component.prototype.clean = function() {
+  if (!this.isValid) { throw('not a clean component!') }
+  this.getRenderMethod().clean()
+  return this.ast
+}
 
-  isValid: function() {
-    return this.ast.expression.original.left.object.property.name == 'Components'
-  }
+Component.prototype.isValid = function () {
+  return this.ast.expression.original.left.object.property.name == 'Components'
+}
+
+Component.prototype.getRenderMethod = function() {
+  return require('./render_method.js').fromComponent(this)
+}
+
+exports.fromAst = function(ast) {
+  component = new Component(ast)
+  return component
 }
