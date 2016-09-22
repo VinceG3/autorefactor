@@ -11,18 +11,24 @@ function RenderMethod(component) {
       .properties
       .filter(function(property){return property.key.name === 'render'}))[0];
   this.body = this.method.value.body.body;
-}
+};
 
 RenderMethod.prototype.isClean = function() {
   if (this.body[0].type === 'ReturnStatement') { return true };
   return false
-}
+};
 
 RenderMethod.prototype.clean = function() {
   if (this.isClean()) { return true };
+};
 
-}
+RenderMethod.prototype.extractVarDec = function() {
+  var varDecs = this.body.filter(function(statement) {
+    return statement.type === 'VariableDeclaration'
+  });
+  return varDecs.shift();
+};
 
 exports.fromComponent = function(component) {
   return new RenderMethod(component)
-}
+};
