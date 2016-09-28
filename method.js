@@ -5,23 +5,18 @@ function Method(component) {
 Method.prototype.setBody = function(methodBody) {
   this.body = methodBody
   this.createProperty()
-  this.setPropertyBody()
-  this.insertIntoComponent()
+  this.moveRenderToEnd()
 }
 
 Method.prototype.createProperty = function() {
   var recast = require('recast')
   b = recast.types.builders
-  n = recast.types.namedTypes
-  n.Property.assert(add)
+  var propertyList = component.properties()
+  propertyList[propertyList.length] = b.Property
   debugger
 }
 
-Method.prototype.setPropertyBody = function() {
-  debugger
-}
-
-Method.prototype.insertIntoComponent = function() {
+Method.prototype.moveRenderToEnd = function() {
   debugger
 }
 

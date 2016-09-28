@@ -15,16 +15,13 @@ Generator = {
     that = this;
     return function(err, data) {
       if (err) throw err;
-      that.runTransformations(data)
+      that.writeToFile(that.toAst(data))
     }
   },
 
-  write_to_file: function(string) {
+  writeToFile: function(object) {
     var fs = require('fs');
-    fs.writeFile("output.js.jsx", string, function(err) {
-      if(err) {
-      }
-    }); 
+    fs.writeFile("outputast.json", JSON.stringify(object), function(err) {}); 
   },
 
   parseWithBabylon: function(code) {
@@ -37,7 +34,7 @@ Generator = {
         "flow"
       ]
     });
-    this.write_to_file(output)
+    this.writeToFile(output)
   },
 
   recast: require('recast'),
@@ -51,10 +48,14 @@ Generator = {
     return this.code
   },
 
+  toAst: function(code) {
+    return this.parseWithRecast(code)
+  },
+
   runTransformations: function(code) {
-    var ast = this.parseWithRecast(code)
+    var ast = this.toAst(code)
     var transformed = require('./transformations.js').run(ast)
-    this.write_to_file(this.recast.print(transformed).code)
+    this.writeToFile(this.recast.print(transformed).code)
   },
 
   getTransformedCode: function() {

@@ -26,6 +26,10 @@ Component.prototype.replaceVarDecWithGetter = function(varName) {
   debugger
 };
 
+Component.prototype.properties = function() {
+  return this.ast.program.body[0].expression.right.arguments[0].properties
+};
+
 exports.fromAst = function(ast) {
   return new Component(ast)
 };
