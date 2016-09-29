@@ -10,8 +10,8 @@ module NodeComponents
     end
 
     def find(tag)
-      obj = children.find {|member| member.dig('key', 'name') == tag.to_s }
-      self.class.member_class.new(obj)
+      json = find_member(tag)
+      self.class.member_class.new(json)
     end
   end
 end

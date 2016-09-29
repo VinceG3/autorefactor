@@ -1,11 +1,13 @@
 module NodeComponents
   class RenderMethod < AstNode
-    def expressions
-      Expressions.new(expressions_node)
-    end
+    component :expressions
 
     def return
       expressions.find(:return).body
+    end
+
+    def expressions_node
+      json
     end
   end
 end

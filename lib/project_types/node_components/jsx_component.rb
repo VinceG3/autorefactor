@@ -11,7 +11,7 @@ module NodeComponents
     def full_name
       identifier.call
     end
-22
+
     def members_node
       json.dig('expression', 'right', 'arguments')[0].dig('properties')
     end
