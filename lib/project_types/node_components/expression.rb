@@ -1,7 +1,7 @@
 module NodeComponents
   class Expression < AstNode
     def body
-      binding.pry
+      json.dig('argument')
     end
   end
 end

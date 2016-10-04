@@ -18,9 +18,8 @@ module NodeComponents
       json.dig('program', 'body')[0]
     end
 
-    def call
-      raise 'not a jsx component' unless jsx_component?
-      jsx_component.call
+    def cleaned_ast
+      json
     end
   end
 end
