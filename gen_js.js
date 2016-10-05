@@ -15,7 +15,10 @@ Generator = {
     that = this;
     return function(err, data) {
       if (err) throw err;
-      that.writeToFile(that.toAst(data))
+      ast = JSON.parse(data)
+      code = that.recast.print(ast).code
+      console.log(code)
+      this.writeToFile(code)
     }
   },
 

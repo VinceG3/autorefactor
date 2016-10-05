@@ -8,6 +8,10 @@ module NodeComponents
       @json = json
     end
 
+    def inspect
+      binding.pry
+    end
+
     def self.component(*arguments)
       if arguments.first.class == Hash
         hash = arguments.first
