@@ -1,5 +1,5 @@
-class SubExpression
-  attr_reader :source
+class SubExpression < ParseMachine
+  attr_reader :source, :operations
 
   def initialize(source)
     @source = source
@@ -7,26 +7,7 @@ class SubExpression
     @state = :blank
     @working = source
     @operation = ''
-  end
-
-  def parse
-    @working = source.each_char.to_a
-    loop do
-      @char = @working.shift
-      case @state
-      when :blank
-        handle_blank
-      when :operation
-        handle_operation
-      when :right
-        handle_right
-      when :done
-        break
-      else
-        what_next
-      end
-    end
-    @operations
+    @paren_count = 0
   end
 
   def handle_right
@@ -39,11 +20,36 @@ class SubExpression
       @left = operation
       @state = :right
       @operation = ''
+    when /[(]/
+      @state = :paren
+      add_to_operation
     when nil
       operation = Operation.new(@type, @left, @operation)
       @operations << operation
       @state = :done
       @operation = ''
+    else
+      what_next
+    end
+  end
+  
+  def handle_paren
+    case @char
+    when /[\w]/, /\s/
+      add_to_operation
+    when /[{]/, /[}]/
+      add_to_operation
+    when /[\[]/, /[\]]/
+      add_to_operation
+    when /[\/]/, /[-]/, /[“”]/
+      add_to_operation
+    when /[:;<!>&|"%*=$#?+',.]/
+      add_to_operation
+    when /[(]/
+      add_to_operation
+      @paren_count += 1
+    when /[)]/
+      decrement_paren
     else
       what_next
     end
@@ -73,6 +79,12 @@ class SubExpression
     end
   end
 
+  def decrement_paren
+    add_to_operation
+    @paren_count -= 1
+    @state = :right if @paren_count < 0
+  end
+
   def add_to_operation
     @operation << @char
   end
@@ -93,6 +105,10 @@ class SubExpression
     # puts "Current Working:   #{@working.join('')}"
     puts "Current Character: #{@char.inspect}"
     abort
+  end
+
+  def return_value
+    operations
   end
 
   def inspect

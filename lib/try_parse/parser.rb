@@ -1,4 +1,4 @@
-class Parser
+class Parser < ParseMachine
   attr_reader :source
 
   def initialize(source)
@@ -8,27 +8,6 @@ class Parser
     @state = :blank
     @expressions = []
     @paren_count = 0
-  end
-
-  def parse
-    @working = source.each_char.to_a
-    loop do
-      @char = @working.shift
-      case @state
-      when :blank
-        handle_blank
-      when :expression
-        handle_expression
-      when :paren
-        handle_paren
-      when :done
-        parse_expressions
-        break
-      else
-        what_next
-      end
-    end
-    @expressions
   end
 
   def to_ast
@@ -121,5 +100,9 @@ class Parser
 
   def parse_expressions
     @expressions.collect(&:parse)
+  end
+
+  def return_value
+    parse_expressions
   end
 end

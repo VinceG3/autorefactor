@@ -1,4 +1,4 @@
-class Expression
+class Expression < ParseMachine
   attr_reader :source, :sub_exprs
 
   def initialize(source)
@@ -7,25 +7,6 @@ class Expression
     @sub_expr = ''
     @sub_exprs = []
     @paren_count = 0
-  end
-
-  def parse
-    @working = source.each_char.to_a
-    loop do
-      @char = @working.shift
-      case @state
-      when :blank
-        handle_blank
-      when :sub_expr
-        handle_sub_expr
-      when :paren
-        handle_paren
-      when :done
-        return classified_expression
-      else
-        what_next
-      end
-    end
   end
 
   def handle_sub_expr
@@ -135,6 +116,10 @@ class Expression
     [
       
     ]
+  end
+
+  def return_value
+    classified_expression
   end
 
   def inspect
