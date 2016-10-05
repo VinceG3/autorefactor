@@ -7,16 +7,26 @@ class SourceFile
   end
 
   def expressions
-    Parser.new(source).to_ast
+    ast.expressions
   end
 
   def call
-    @ast ||= expressions
+    @ast ||= Parser.new(source).to_ast
+    self
+  end
+
+  def to_ast
+    call.ast
   end
 
   def render
     call
-    Printer.print(@ast)
+    ast.to_s
+  end
+
+  def lint
+    call
+    ast.lint
   end
 
   def transform

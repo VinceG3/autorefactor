@@ -136,4 +136,12 @@ class Expression
       
     ]
   end
+
+  def inspect
+    classified_expression.inspect
+  end
+
+  def problems
+    Rules.apply(self)
+  end
 end

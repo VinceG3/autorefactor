@@ -9,4 +9,8 @@ class Assignment
   def to_s
     "#{left} = #{right}"
   end
+
+  def inspect
+    "assignment\nleft: #{left.inspect}\nright: #{right.inspect}"
+  end
 end

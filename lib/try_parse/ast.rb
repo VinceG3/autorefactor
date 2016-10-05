@@ -9,7 +9,15 @@ class Ast
     expressions.collect(&:transform)
   end
 
+  def lint
+    expressions.collect(&:problems)
+  end
+
   def to_s
     expressions.collect(&:to_s).join('')
+  end
+
+  def render
+    Printer.print(expressions)
   end
 end
