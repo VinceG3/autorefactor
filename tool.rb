@@ -1,10 +1,11 @@
-require 'json'
 require 'pry'
+require './lib/try_parse/parse_machine'
+require './lib/try_parse/classifier'
+require './lib/try_parse/collector'
+require './lib/try_parse/expression'
+require './lib/try_parse/sub_expression'
+Dir['./lib/try_parse/*.rb'].each {|f| require f }
 
-Dir['./lib/project_types/node_components/*.rb'].each {|file| require file }
-system('node gen_ast.js test_component.js.jsx')
-string = IO.read('outputast.json')
-json = JSON.parse(string)
-component = NodeComponents::SourceFile.new(json)
-IO.write('clean_ast.json', component.cleaned_ast.to_json)
-system('node gen_js.js clean_ast.json')
+ast = SourceFile.new('working.js.jsx').to_ast
+binding.pry
+puts ast.expressions.first.left.class

@@ -11,7 +11,7 @@ class SourceFile
   end
 
   def call
-    @ast ||= Parser.new(source).to_ast
+    @ast ||= Parser.new(source).to_ast.resolve
     self
   end
 

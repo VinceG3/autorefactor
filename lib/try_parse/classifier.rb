@@ -1,0 +1,2 @@
+class Classifier < ParseMachine
+end

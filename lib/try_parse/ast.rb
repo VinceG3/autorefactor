@@ -9,7 +9,13 @@ class Ast
     expressions.collect(&:transform)
   end
 
+  def resolve
+    @expressions = expressions.collect(&:resolve)
+    self
+  end
+
   def lint
+    resolve
     expressions.collect(&:problems)
   end
 
@@ -19,5 +25,9 @@ class Ast
 
   def render
     Printer.print(expressions)
+  end
+
+  def inspect
+    "ast: #{expressions.collect(&:inspect).join}"
   end
 end

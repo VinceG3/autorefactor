@@ -1,24 +1,26 @@
-class Expression < ParseMachine
+class Expression < Classifier
   attr_reader :source, :sub_exprs
 
   def initialize(source)
     @source = source
     @state = :blank
     @sub_expr = ''
-    @sub_exprs = []
     @paren_count = 0
   end
 
   def handle_sub_expr
     case @char
     when /[\w.]/
-      add_to_sub_expr
+      add_char
     when / /
-      snip_sub_expr
+      add_char
+    when /[=]/
+      @type = :assignment
+      add_char
     when /[(]/
       add_parenthesized_expression
     when /[;]/
-      snip_sub_expr
+      snip
       @state = :done
     else
       what_next
@@ -29,56 +31,35 @@ class Expression < ParseMachine
     case @char
     when /[\w]/
       @state = :sub_expr
-      add_to_sub_expr
+      add_char
     when /[=]/
       raise SyntaxError unless sub_exprs.count == 1
       @type = :assignment
+      add_char
     when /[\s]/
     else
       what_next
     end
   end
 
-  def handle_paren
-    case @char
-    when /[\w]/, /\s/
-      add_to_sub_expr
-    when /[{]/, /[}]/
-      add_to_sub_expr
-    when /[\[]/, /[\]]/
-      add_to_sub_expr
-    when /[\/]/, /[-]/, /[“”]/
-      add_to_sub_expr
-    when /[:;<!>&|"%*=$#?+',.]/
-      add_to_sub_expr
-    when /[(]/
-      add_to_sub_expr
-      @paren_count += 1
-    when /[)]/
-      decrement_paren
-    else
-      what_next
-    end
-  end
-
   def add_parenthesized_expression
-    add_to_sub_expr
+    add_char
     @state = :paren
   end
 
-  def snip_sub_expr
-    add_to_sub_expr unless @char =~ /[; ]/
+  def snip
+    add_char unless @char =~ /[; ]/
     sub_exprs << SubExpression.new(@sub_expr)
     @sub_expr = ''
     @state = :blank
   end
 
-  def add_to_sub_expr
+  def add_char
     @sub_expr << @char unless @char =~ /[;]/
   end
 
   def decrement_paren
-    add_to_sub_expr
+    add_char
     @paren_count -= 1
     @state = :sub_expr if @paren_count < 0
   end
@@ -98,7 +79,8 @@ class Expression < ParseMachine
   def classified_expression
     case @type
     when :assignment
-      Assignment.new(*sub_exprs)
+      binding.pry
+      Assignment.new
     else
       binding.pry
     end
@@ -128,5 +110,10 @@ class Expression < ParseMachine
 
   def problems
     Rules.apply(self)
+  end
+
+  def resolve
+    sub_exprs.collect(&:resolve)
+    classified_expression
   end
 end

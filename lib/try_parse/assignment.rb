@@ -1,7 +1,8 @@
-class Assignment
+class Assignment < Expression
   attr_reader :left, :right
 
-  def initialize(left, right)
+  def initialize(source)
+    @source
     @left = left
     @right = right
   end

@@ -1,4 +1,4 @@
-class Parser < ParseMachine
+class Parser < Collector
   attr_reader :source
 
   def initialize(source)
@@ -18,11 +18,11 @@ class Parser < ParseMachine
   def handle_expression
     case @char
     when /[\w. =]/
-      add_to_expression
+      add_char
     when /\(/
       add_parenthesized_expression
     when /[;]/
-      snip_expression
+      snip
     else
       what_next
     end
@@ -31,7 +31,7 @@ class Parser < ParseMachine
   def handle_blank
     case @char
     when /[\w]/
-      add_to_expression
+      add_char
       @state = :expression
     when /[\s]/
       return
@@ -42,60 +42,26 @@ class Parser < ParseMachine
     end
   end
 
-  def handle_paren
-    case @char
-    when /[\w]/, /\s/
-      add_to_expression
-    when /[{]/, /[}]/
-      add_to_expression
-    when /[\[]/, /[\]]/
-      add_to_expression
-    when /[\/]/, /[-]/, /[“”]/
-      add_to_expression
-    when /[:;<!>&|"%*=$#?+',.]/
-      add_to_expression
-    when /[(]/
-      add_to_expression
-      @paren_count += 1
-    when /[)]/
-      decrement_paren
-    else
-      what_next
-    end
-  end
-
   def add_parenthesized_expression
-    add_to_expression
+    add_char
     @state = :paren
   end
 
-  def add_to_expression
+  def add_char
     @expression << @char
   end
 
-  def snip_expression
-    add_to_expression
+  def snip
+    add_char
     @expressions << Expression.new(@expression)
     @expression = ''
     @state = :blank
   end
 
   def decrement_paren
-    add_to_expression
+    add_char
     @paren_count -= 1
     @state = :expression if @paren_count < 0
-  end
-
-  def what_next
-    puts @working.join('')
-                 .split("\n")
-                 .take(10)
-                 .join("\n")
-    puts
-    # puts "Current Expression: #{@expression}"
-    puts "Current State:     #{@state}"
-    puts "Current Character: #{@char}"
-    abort
   end
 
   def parse_expressions

@@ -1,4 +1,4 @@
-class SubExpression < ParseMachine
+class SubExpression < Classifier
   attr_reader :source, :operations
 
   def initialize(source)
@@ -13,7 +13,7 @@ class SubExpression < ParseMachine
   def handle_right
     case @char
     when /[\w]/
-      add_to_operation
+      add_char
     when /[.]/
       operation = Operation.new(@type, @left, @operation)
       @operations << operation
@@ -22,7 +22,8 @@ class SubExpression < ParseMachine
       @operation = ''
     when /[(]/
       @state = :paren
-      add_to_operation
+      @type = :method_call if @type == :property_accessor
+      add_char
     when nil
       operation = Operation.new(@type, @left, @operation)
       @operations << operation
@@ -33,32 +34,10 @@ class SubExpression < ParseMachine
     end
   end
   
-  def handle_paren
-    case @char
-    when /[\w]/, /\s/
-      add_to_operation
-    when /[{]/, /[}]/
-      add_to_operation
-    when /[\[]/, /[\]]/
-      add_to_operation
-    when /[\/]/, /[-]/, /[“”]/
-      add_to_operation
-    when /[:;<!>&|"%*=$#?+',.]/
-      add_to_operation
-    when /[(]/
-      add_to_operation
-      @paren_count += 1
-    when /[)]/
-      decrement_paren
-    else
-      what_next
-    end
-  end
-
   def handle_blank
     case @char
     when /[\w]/
-      add_to_operation
+      add_char
       @state = :operation
     else
       what_next
@@ -68,9 +47,9 @@ class SubExpression < ParseMachine
   def handle_operation
     case @char
     when /[\w]/
-      add_to_operation
+      add_char
     when /[.]/
-      @type = :message
+      @type = :property_accessor
       @state = :right
       @left = @operation
       @operation = ''
@@ -80,31 +59,17 @@ class SubExpression < ParseMachine
   end
 
   def decrement_paren
-    add_to_operation
+    add_char
     @paren_count -= 1
     @state = :right if @paren_count < 0
   end
 
-  def add_to_operation
+  def add_char
     @operation << @char
   end
 
   def to_s
     source
-  end
-
-  def what_next
-    puts @working.join('')
-                 .split("\n")
-                 .take(10)
-                 .join("\n")
-    puts
-    # puts "Current Expression: #{@expression}"
-    puts "Current State:     #{@state}"
-    puts "Current Operation: #{@operation}"
-    # puts "Current Working:   #{@working.join('')}"
-    puts "Current Character: #{@char.inspect}"
-    abort
   end
 
   def return_value
@@ -114,5 +79,23 @@ class SubExpression < ParseMachine
   def inspect
     parse
     "subexpression"
+  end
+
+  def resolve
+    parse
+    classified_expression
+  end
+
+  def classified_expression
+    case @type
+    when :property_accessor
+      PropertyAccessor.new(source)
+    when :method_call
+      MethodCall.new(source)
+    when nil
+      self
+    else
+      abort("unrecognized expression type: #{@type.inspect}")
+    end
   end
 end

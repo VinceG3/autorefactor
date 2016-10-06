@@ -17,6 +17,41 @@ class ParseMachine
   end
 
   def abort_parse
+    binding.pry
     abort("can't recognize state #{@state}")
+  end
+
+  def handle_paren
+    case @char
+    when /[\w]/, /\s/
+      add_char
+    when /[{]/, /[}]/
+      add_char
+    when /[\[]/, /[\]]/
+      add_char
+    when /[\/]/, /[-]/, /[“”]/
+      add_char
+    when /[:;<!>&|"%*=$#?+',.]/
+      add_char
+    when /[(]/
+      add_char
+      @paren_count += 1
+    when /[)]/
+      decrement_paren
+    else
+      what_next
+    end
+  end
+
+  def what_next
+    puts @working.join('')
+                 .split("\n")
+                 .take(10)
+                 .join("\n")
+    puts
+    puts "Current State:     #{@state}"
+    puts "Current Operation: #{@operation}"
+    puts "Current Character: #{@char.inspect}"
+    abort
   end
 end
