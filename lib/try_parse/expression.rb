@@ -1,14 +1,14 @@
 class Expression < Classifier
-  attr_reader :source, :sub_exprs
+  attr_reader :source, :sub_units
 
   def initialize(source)
     @source = source
     @state = :blank
-    @sub_expr = ''
+    @sub_unit = ''
     @paren_count = 0
   end
 
-  def handle_sub_expr
+  def handle_sub_unit
     case @char
     when /[\w.]/
       add_char
@@ -20,7 +20,6 @@ class Expression < Classifier
     when /[(]/
       add_parenthesized_expression
     when /[;]/
-      snip
       @state = :done
     else
       what_next
@@ -30,10 +29,10 @@ class Expression < Classifier
   def handle_blank
     case @char
     when /[\w]/
-      @state = :sub_expr
+      @state = :sub_unit
       add_char
     when /[=]/
-      raise SyntaxError unless sub_exprs.count == 1
+      raise SyntaxError unless sub_units.count == 1
       @type = :assignment
       add_char
     when /[\s]/
@@ -47,42 +46,24 @@ class Expression < Classifier
     @state = :paren
   end
 
-  def snip
-    add_char unless @char =~ /[; ]/
-    sub_exprs << SubExpression.new(@sub_expr)
-    @sub_expr = ''
-    @state = :blank
-  end
-
   def add_char
-    @sub_expr << @char unless @char =~ /[;]/
+    @sub_unit << @char unless @char =~ /[;]/
   end
 
   def decrement_paren
     add_char
     @paren_count -= 1
-    @state = :sub_expr if @paren_count < 0
-  end
-
-  def what_next
-    puts @working.join('')
-                 .split("\n")
-                 .take(10)
-                 .join("\n")
-    puts
-    puts "Current State:     #{@state}"
-    puts "Current Character: #{@char}"
-    # binding.pry
-    abort
+    @state = :sub_unit if @paren_count < 0
   end
 
   def classified_expression
     case @type
     when :assignment
-      binding.pry
-      Assignment.new
+      Assignment.new(@sub_unit)
+    when nil
+      self
     else
-      binding.pry
+      abort("#{self.class.name}: don't know what to do with type: #{@type.inspect}")
     end
   end
 
@@ -91,7 +72,7 @@ class Expression < Classifier
   end
 
   def to_s
-    sub_exprs.collect(&:to_s).join('')
+    sub_units.collect(&:to_s).join('')
   end
 
   def transformations
@@ -105,7 +86,7 @@ class Expression < Classifier
   end
 
   def inspect
-    classified_expression.inspect
+    "#{self.class.name}: #{source}"
   end
 
   def problems
@@ -113,7 +94,7 @@ class Expression < Classifier
   end
 
   def resolve
-    sub_exprs.collect(&:resolve)
-    classified_expression
+    return self if @type.nil?
+    classified_expression.resolve
   end
 end

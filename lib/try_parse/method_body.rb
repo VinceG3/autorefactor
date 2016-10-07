@@ -1,9 +1,8 @@
-class SourceFile
+class MethodBody
   attr_reader :file, :source, :ast
 
-  def initialize(file)
-    @file = file
-    @source = IO.read(file)
+  def initialize(source)
+    @source = source
   end
 
   def expressions
@@ -11,7 +10,7 @@ class SourceFile
   end
 
   def call
-    @ast ||= MethodBody.new(source).to_ast.resolve
+    @ast ||= Parser.new(source).to_ast.resolve
     self
   end
 

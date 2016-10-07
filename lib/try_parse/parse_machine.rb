@@ -1,10 +1,16 @@
 class ParseMachine
+  attr_reader :source
+  
   def parse
     set_working
     loop do
       shift_char
       return return_value if @state == :done
-      send("handle_#{@state}") rescue NoMethodError abort_parse
+      if respond_to?("handle_#{@state}")
+        send("handle_#{@state}") 
+      else
+        abort_parse
+      end
     end
   end
 
@@ -17,8 +23,7 @@ class ParseMachine
   end
 
   def abort_parse
-    binding.pry
-    abort("can't recognize state #{@state}")
+    abort("#{self.class.name}: can't recognize state #{@state.inspect}")
   end
 
   def handle_paren
@@ -44,13 +49,15 @@ class ParseMachine
   end
 
   def what_next
+    puts "In: #{self.class.name}"
+    puts
     puts @working.join('')
                  .split("\n")
                  .take(10)
                  .join("\n")
     puts
     puts "Current State:     #{@state}"
-    puts "Current Operation: #{@operation}"
+    puts "Current Sub unit : #{@sub_unit}"
     puts "Current Character: #{@char.inspect}"
     abort
   end
