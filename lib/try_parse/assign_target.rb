@@ -1,6 +1,10 @@
 class AssignTarget < Classifier
   def initialize(source)
-    @source = source
+    if source.is_a?(AssignTarget) 
+      @source = source.source 
+    else
+      @source = source
+    end
   end
 
   def inspect

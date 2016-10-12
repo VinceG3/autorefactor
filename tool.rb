@@ -1,4 +1,5 @@
 require 'pry'
+require 'active_support/core_ext/object/blank.rb'
 require './lib/try_parse/parse_machine'
 require './lib/try_parse/classifier'
 require './lib/try_parse/collector'

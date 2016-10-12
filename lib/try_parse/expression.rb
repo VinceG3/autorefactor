@@ -72,13 +72,8 @@ class Expression < Classifier
   end
 
   def to_s
+    return '' if sub_units.blank?
     sub_units.collect(&:to_s).join('')
-  end
-
-  def transformations
-    [
-      
-    ]
   end
 
   def return_value
