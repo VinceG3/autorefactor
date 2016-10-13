@@ -10,12 +10,15 @@ class Expression < Classifier
 
   def handle_sub_unit
     case @char
-    when /[\w.]/
+    when /[\w]/
       add_char
     when / /
       add_char
     when /[=]/
       @type = :assignment
+      add_char
+    when /[.]/
+      @type = :function_call if @type.nil?
       add_char
     when /[(]/
       add_parenthesized_expression
@@ -57,9 +60,11 @@ class Expression < Classifier
   end
 
   def classify
-    case @type
+    @classified_expression ||= case @type
     when :assignment
       Assignment.new(@sub_unit)
+    when :function_call
+      FunctionCall.new(@sub_unit)
     when nil
       self
     else
@@ -81,7 +86,7 @@ class Expression < Classifier
   end
 
   def inspect
-    "#{self.class.name}: #{source}"
+    "#{self.class.name.light_blue}: #{@classified_expression.source}"
   end
 
   def problems
@@ -89,7 +94,6 @@ class Expression < Classifier
   end
 
   def resolve
-    return self if @type.nil?
     classify.resolve
   end
 end

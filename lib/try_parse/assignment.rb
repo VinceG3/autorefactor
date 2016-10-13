@@ -49,7 +49,7 @@ class Assignment < Collector
   end
 
   def inspect
-    "#{self.class.name}:\n#{@sub_units[0].inspect}\n#{@sub_units[1].inspect}"
+    "#{self.class.name.light_blue}:\n#{@sub_units[0].inspect}\n#{@sub_units[1].inspect}"
   end
 
   def return_value

@@ -7,8 +7,12 @@ class AssignTarget < Classifier
     end
   end
 
+  def classify
+    @classified_expression ||= self
+  end
+
   def inspect
-    "#{self.class.name}: #{source}"
+    "#{self.class.name.light_blue}: #{source}"
   end
 
   def resolve
