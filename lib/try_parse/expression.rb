@@ -2,7 +2,7 @@ class Expression < Classifier
   attr_reader :source, :sub_units
 
   def initialize(source)
-    @source = source
+    @source = source.is_a?(String) ? source : source.source
     @state = :blank
     @sub_unit = ''
     @paren_count = 0
@@ -56,7 +56,7 @@ class Expression < Classifier
     @state = :sub_unit if @paren_count < 0
   end
 
-  def classified_expression
+  def classify
     case @type
     when :assignment
       Assignment.new(@sub_unit)
@@ -77,7 +77,7 @@ class Expression < Classifier
   end
 
   def return_value
-    classified_expression
+    classify
   end
 
   def inspect
@@ -90,6 +90,6 @@ class Expression < Classifier
 
   def resolve
     return self if @type.nil?
-    classified_expression.resolve
+    classify.resolve
   end
 end
