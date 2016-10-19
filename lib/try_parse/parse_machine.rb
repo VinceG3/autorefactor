@@ -5,7 +5,7 @@ class ParseMachine
     set_working
     loop do
       shift_char
-      return return_value if @state == :done
+      return self if @state == :done
       if respond_to?("handle_#{@state}")
         send("handle_#{@state}") 
       else
@@ -46,6 +46,16 @@ class ParseMachine
     else
       what_next
     end
+  end
+
+  def add_char
+    @sub_unit << @char
+  end
+
+  def decrement_paren
+    add_char
+    @paren_count -= 1
+    @state = :sub_unit if @paren_count < 0
   end
 
   def what_next

@@ -1,4 +1,4 @@
-CMS.Components.PlaylistEdit = React.createClass({
+React.createClass({
   displayName: 'PlaylistEdit',
   mixins: [Reflux.ListenerMixin],
 

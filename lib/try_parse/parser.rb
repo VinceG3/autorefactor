@@ -1,19 +1,5 @@
 class Parser < Collector
-  attr_reader :source
-
-  def initialize(source)
-    @source = source
-    @expression = ''
-    @working = source
-    @state = :blank
-    @expressions = []
-    @paren_count = 0
-  end
-
-  def to_ast
-    parse
-    Ast.new(@expressions)
-  end
+  attr_reader :source, :resolution
 
   def handle_expression
     case @char
@@ -70,5 +56,9 @@ class Parser < Collector
 
   def return_value
     parse_expressions
+  end
+
+  def resolve
+    @resolution ||= parse
   end
 end

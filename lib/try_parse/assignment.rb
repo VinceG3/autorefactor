@@ -1,6 +1,4 @@
 class Assignment < Collector
-  attr_reader :source
-
   def initialize(source)
     @source = source
     @sub_units = []

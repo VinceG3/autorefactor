@@ -1,0 +1,63 @@
+JsxAst:
+  contents: Expressions:
+    expression: Assignment:
+      target: Reference: CMS.Components.PlaylistEdit
+      contents: MethodCall:
+        receiver: Symbol: React
+        method_name: Symbol: createClass
+        arguments: Object:
+          property: ObjectProperty:
+            name: Symbol: mixins
+            contents: Array:
+              element: MethodCall:
+                receiver: Symbol: Reflux
+                method_name: Symbol: ListenerMixin
+          property: ObjectProperty:
+            name: Symbol: propTypes
+            contents: Object:
+              name: Symbol: id
+              contents: MethodCall:
+                receiver: MethodCall:
+                  receiver: Symbol: React
+                  method_name: Symbol: PropTypes
+                method_name: Symbol: string
+          property: ObjectProperty:
+            name: Symbol: render
+            contents: FunctionExpression:
+              body: FunctionBody:
+                expression: VarAssignment:
+                  name: Symbol: inputStyle
+                  contents: Object:
+                    property: ObjectProperty:
+                      name: Symbol: height
+                      contents: String: 45px
+                    property: ObjectProperty:
+                      name: Symbol: width
+                      contents: String: 93%
+                    property: ObjectProperty:
+                      name: Symbol: marginRight
+                      contents: String: 10px
+                expression: ReturnStatement:
+                  contents: JSXExpression:
+                    tag: JSXTag:
+                      name: div
+                      properties: TagProperties:
+                        property: TagProperty:
+                          name: JSXPropertyName: className
+                          value: JSXString: edit-playlist
+                      children: JSXTags:
+                        child: JSXTag:
+                          name: CMS.Components.PreviewButton
+                          properties: TagProperties:
+                            property: TagProperty:
+                              name: JSXPropertyName: clickHandler
+                              value: JSXInterpolation: this.handlePreview
+                            property: TagProperty:
+                              name: JSXPropertyName: id
+                              value: JSXInterpolation: 'preview_playlist' + playlist.id
+                            property: TagProperty:
+                              name: JSXPropertyName: style
+                              value: JSXInterpolation: {marginLeft: '10px'}
+                            property: TagProperty:
+                              name: JSXPropertyName: text
+                              value: JSXPropertyString: Preview Playlist

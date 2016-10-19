@@ -15,13 +15,15 @@ class Expression < Classifier
     when / /
       add_char
     when /[=]/
-      @type = :assignment
+      @has_equals = true
       add_char
     when /[.]/
-      @type = :function_call if @type.nil?
+      @has_dot = true
       add_char
     when /[(]/
-      add_parenthesized_expression
+      @has_paren = true
+      add_char
+      @state = :paren
     when /[;]/
       @state = :done
     else
@@ -36,7 +38,7 @@ class Expression < Classifier
       add_char
     when /[=]/
       raise SyntaxError unless sub_units.count == 1
-      @type = :assignment
+      @has_equals = true
       add_char
     when /[\s]/
     else
@@ -44,36 +46,17 @@ class Expression < Classifier
     end
   end
 
-  def add_parenthesized_expression
-    add_char
-    @state = :paren
-  end
-
-  def add_char
-    @sub_unit << @char unless @char =~ /[;]/
-  end
-
-  def decrement_paren
-    add_char
-    @paren_count -= 1
-    @state = :sub_unit if @paren_count < 0
+  def get_classified_value
+    return Assignment.new(@sub_unit) if @has_equals
+    if @has_dot
+      return MethodCall.new(@sub_unit) if @has_paren
+      return FunctionCall.new(@sub_unit)
+    end
+    return UnclassifiedExpression.new(@source)
   end
 
   def classify
-    @classified_expression ||= case @type
-    when :assignment
-      Assignment.new(@sub_unit)
-    when :function_call
-      FunctionCall.new(@sub_unit)
-    when nil
-      self
-    else
-      abort("#{self.class.name}: don't know what to do with type: #{@type.inspect}")
-    end
-  end
-
-  def transform
-    transformations.each(&:call)
+    @classified_value ||= get_classified_value
   end
 
   def to_s

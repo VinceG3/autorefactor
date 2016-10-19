@@ -9,4 +9,4 @@ require './lib/try_parse/sub_expression'
 Dir['./lib/try_parse/*.rb'].each {|f| require f }
 
 ast = SourceFile.new('working.js.jsx').to_ast
-puts ast.inspect
+puts ast.first.inspect
