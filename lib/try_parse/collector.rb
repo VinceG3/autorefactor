@@ -11,7 +11,7 @@ class Collector < ParseMachine
   end
 
   def snip
-    @sub_units << @sub_unit
+    @sub_units << collect_class.new(@sub_unit).parse
     @sub_unit = ''
     @state = :blank
   end

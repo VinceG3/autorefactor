@@ -26,6 +26,9 @@ class Expression < Classifier
       @state = :paren
     when /[;]/
       @state = :done
+    when nil
+      c = caller; system('clear'); puts c.take(13).join("\n"); binding.pry
+      @state = :done
     else
       what_next
     end
@@ -59,24 +62,11 @@ class Expression < Classifier
     @classified_value ||= get_classified_value
   end
 
-  def to_s
-    return '' if sub_units.blank?
-    sub_units.collect(&:to_s).join('')
-  end
-
   def return_value
-    classify
+    @classified_value
   end
 
-  def inspect
-    "#{self.class.name.light_blue}: #{@classified_expression.source}"
-  end
-
-  def problems
-    Rules.apply(self)
-  end
-
-  def resolve
-    classify.resolve
+  def inspect(tab_count = 0)
+    "#{self.class.name.light_blue}: #{@classified_expression.inspect}"
   end
 end

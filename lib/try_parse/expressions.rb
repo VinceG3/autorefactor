@@ -25,4 +25,13 @@ class Expressions < Collector
       what_next
     end
   end
+
+  def collect_class
+    Expression
+  end
+
+  def inspect(tab_count = 0)
+    "Expressions".light_blue << ": \n  " << "  " * tab_count <<
+    @sub_units.collect{|su| su.inspect(tab_count + 1)}.join
+  end
 end

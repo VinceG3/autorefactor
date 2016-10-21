@@ -9,4 +9,8 @@ class JsxAst
     @contents ||= Expressions.new(source).parse
     self
   end
+
+  def inspect
+    "JSXAst:\n  contents: " << @contents.inspect(1)
+  end
 end
