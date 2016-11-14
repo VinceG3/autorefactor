@@ -27,17 +27,12 @@ class Assignment < Collector
     end
   end
 
-  def resolve
-    parse
-    @sub_units = [
-      AssignTarget.new(@sub_units[0]).resolve,
-      Expression.new(@sub_units[1]).resolve,
-    ]
-    self
-  end
-
   def snip
-    @sub_units << @sub_unit
+    if @sub_units.empty?
+      @sub_units << Reference.new(@sub_unit).parse
+    else
+      @sub_units << Expression.new(@sub_unit).parse
+    end
     @sub_unit = ''
     state = :blank
   end
@@ -46,8 +41,10 @@ class Assignment < Collector
     @sub_unit << @char
   end
 
-  def inspect
-    "#{self.class.name.light_blue}:\n#{@sub_units[0].inspect}\n#{@sub_units[1].inspect}"
+  def inspect(tab_value = 0)
+    "#{self.class.name.light_blue}:\n" <<
+    "  " * (tab_value) << "target: #{@sub_units[0].inspect(tab_value + 1)}\n" <<
+    "  " * (tab_value) << "contents: #{@sub_units[1].inspect(tab_value + 1)}"
   end
 
   def return_value

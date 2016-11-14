@@ -1,0 +1,3 @@
+class MethodName < Terminal
+
+end

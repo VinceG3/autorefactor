@@ -5,13 +5,26 @@ class ParseMachine
     set_working
     loop do
       shift_char
-      return self if @state == :done
+      if @state == :done
+        classify if self.respond_to?(:classify)
+        return self
+      end
       if respond_to?("handle_#{@state}")
         send("handle_#{@state}") 
       else
         abort_parse
       end
     end
+  end
+
+  def sub_units
+    abort("no @sub_units declared on #{self.class.name}!") unless instance_variable_defined?(:@sub_units)
+    @sub_units
+  end
+
+  def sub_unit
+    abort("no @sub_unit declared on #{self.class.name}!") unless instance_variable_defined?(:@sub_unit)
+    @sub_unit
   end
 
   def set_working
@@ -49,7 +62,7 @@ class ParseMachine
   end
 
   def add_char
-    @sub_unit << @char
+    sub_unit << @char
   end
 
   def decrement_paren
@@ -67,7 +80,7 @@ class ParseMachine
                  .join("\n")
     puts
     puts "Current State:     #{@state}"
-    puts "Current Sub unit : #{@sub_unit}"
+    puts "Current Sub unit : #{sub_unit}"
     puts "Current Character: #{@char.inspect}"
     abort
   end

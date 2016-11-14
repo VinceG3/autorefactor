@@ -1,4 +1,4 @@
-class Token
+class Terminal
   attr_reader :source
 
   def initialize(source)
@@ -11,5 +11,9 @@ class Token
 
   def inspect
     source
+  end
+
+  def parse
+    
   end
 end

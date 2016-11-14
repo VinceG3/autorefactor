@@ -1,13 +1,4 @@
 class Expression < Classifier
-  attr_reader :source, :sub_units
-
-  def initialize(source)
-    @source = source.is_a?(String) ? source : source.source
-    @state = :blank
-    @sub_unit = ''
-    @paren_count = 0
-  end
-
   def handle_sub_unit
     case @char
     when /[\w]/
@@ -27,7 +18,6 @@ class Expression < Classifier
     when /[;]/
       @state = :done
     when nil
-      c = caller; system('clear'); puts c.take(13).join("\n"); binding.pry
       @state = :done
     else
       what_next
@@ -50,23 +40,18 @@ class Expression < Classifier
   end
 
   def get_classified_value
-    return Assignment.new(@sub_unit) if @has_equals
+    return Assignment.new(@sub_unit).parse if @has_equals
     if @has_dot
-      return MethodCall.new(@sub_unit) if @has_paren
-      return FunctionCall.new(@sub_unit)
+      return MethodCall.new(@sub_unit).parse if @has_paren
+      return FunctionCall.new(@sub_unit).parse
     end
-    return UnclassifiedExpression.new(@source)
-  end
-
-  def classify
-    @classified_value ||= get_classified_value
-  end
-
-  def return_value
-    @classified_value
+    return UnclassifiedExpression.new(@source).parse
   end
 
   def inspect(tab_count = 0)
-    "#{self.class.name.light_blue}: #{@classified_expression.inspect}"
+    abort("Expression: inspect called on nil!") if @sub_unit.nil?
+    "#{self.class.name.downcase.light_blue}: #{@sub_unit.inspect(tab_count + 1)}"
+  rescue
+    "error!"
   end
 end

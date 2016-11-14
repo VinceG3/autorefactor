@@ -31,7 +31,7 @@ class Expressions < Collector
   end
 
   def inspect(tab_count = 0)
-    "Expressions".light_blue << ": \n  " << "  " * tab_count <<
-    @sub_units.collect{|su| su.inspect(tab_count + 1)}.join
+    "Expressions".light_blue << ":\n" <<
+    "  " * (tab_count + 1) << @sub_units.collect{|su| su.inspect(tab_count + 1)}.join
   end
 end
