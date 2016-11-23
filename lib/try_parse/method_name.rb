@@ -1,3 +1,0 @@
-class MethodName < Terminal
-
-end

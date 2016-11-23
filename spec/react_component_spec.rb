@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'React Component' do
-  subject { parse_source('react_component.jsx') }
+  subject { parse_source('component.jsx') }
   it 'parses to JSX AST' do
     expect(subject.parse).to be_a(JsxAst)
   end

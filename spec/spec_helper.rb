@@ -1,24 +1,12 @@
-require 'pry'
-require 'colorize'
-require 'active_support/core_ext/object/blank.rb'
-require 'active_support/inflector'
-require './lib/try_parse/parse_machine'
-require './lib/try_parse/classifier'
-require './lib/try_parse/collector'
-require './lib/try_parse/separator'
-require './lib/try_parse/terminal'
-require './lib/try_parse/expression'
-require './lib/try_parse/sub_expression'
-require './lib/try_parse/parser'
-Dir['./lib/try_parse/*.rb'].each {|f| require f }
+require './lib/initialize'
 
 def parse_source(filename)
-  path = "./spec/#{filename}"
+  path = "./tests/react_component/component/#{filename}"
   SourceFile.new(path).parse
 end
 
 def load_source(filename)
-  path = "./spec/#{filename}"
+  path = "./tests/react_component/component/#{filename}"
   IO.read(path)
 end
 
