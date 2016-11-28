@@ -1,5 +1,5 @@
 class ParseMachine
-  attr_reader :source
+  attr_reader :source, :working, :state, :sub_unit, :char
   
   def parse
     set_working
@@ -72,16 +72,6 @@ class ParseMachine
   end
 
   def what_next
-    puts "In: #{self.class.name}"
-    puts
-    puts @working.join('')
-                 .split("\n")
-                 .take(10)
-                 .join("\n")
-    puts
-    puts "Current State:     #{@state}"
-    puts "Current Sub unit : #{sub_unit}"
-    puts "Current Character: #{@char.inspect}"
-    abort
+    WhatNext.new(self).call
   end
 end

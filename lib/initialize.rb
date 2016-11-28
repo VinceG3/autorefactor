@@ -1,8 +1,11 @@
 require 'pry'
+require 'tk'
 require 'colorize'
 require 'active_support/core_ext/object/blank.rb'
 require 'active_support/inflector'
 require './lib/diff'
+require './lib/test'
+require './lib/what_next'
 
 require './lib/try_parse/parse_machine'
 require './lib/try_parse/classifier'

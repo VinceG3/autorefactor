@@ -1,19 +1,5 @@
 #!/usr/bin/env ruby
 require './lib/initialize'
 
-Dir['./tests/*'].each do |format|
-  puts "format: #{format}"
-  Dir[File.join(format, '*')].each do |test|
-    puts "test: #{test}"
-    files = Dir[File.join(test, '*')].to_a
-    output = files.grep(/output/)
-    source = (files - output).first
-    parsed = SourceFile.new(source).parse.inspect.uncolorize
-    if parsed == IO.read(output.first).uncolorize
-      puts 'passed'
-      next
-    else
-      Diff.new(parsed, IO.read(output.first).uncolorize).call
-    end
-  end
-end
+system('clear')
+Test.run_all!

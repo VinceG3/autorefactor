@@ -1,0 +1,22 @@
+JSXComponent:
+	wraps: Assignment
+	identifier: JavascriptIdentifier: 'CMS.Components.PlaylistEdit'
+	object: JavascriptObject: {mixins:, propTypes:, render:}
+
+JavascriptIdentifier:
+
+JavascriptObject:
+
+
+Source -> Language -> Framework -> ProjectConvention
+
+SourceText -> JSX -> React -> Components
+SourceText -> Ruby -> Rails -> Models / Controllers / Views
+
+Source Text *parses* into JSX AST
+Javascript AST *identifies* as React Concepts
+React Concepts *refine* into Components / Stores
+
+Source Text *parses* into Ruby AST
+Ruby AST *identifies* as Rails Concepts
+Rails Concepts *refine* into Models / Controllers / Views
