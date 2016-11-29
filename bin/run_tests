@@ -2,5 +2,5 @@
 require './lib/initialize'
 
 system('clear')
-system('g acpe')
+system('g acpe') || abort
 Test.run_all!
