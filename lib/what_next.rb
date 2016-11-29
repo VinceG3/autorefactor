@@ -18,11 +18,5 @@ class WhatNext
   end
 
   def open_window(string)
-    root = TkRoot.new { title "Hello, World!" }
-    TkLabel.new(root) do
-       text string
-       pack { padx 15 ; pady 15; side 'left' }
-    end
-    Tk.mainloop
   end
 end

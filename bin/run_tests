@@ -2,4 +2,5 @@
 require './lib/initialize'
 
 system('clear')
+system('g acpe')
 Test.run_all!
