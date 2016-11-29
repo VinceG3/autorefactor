@@ -2,5 +2,5 @@
 require './lib/initialize'
 
 system('clear')
-system('g acpe') || abort
+system('git acpe') || abort("save failed")
 Test.run_all!
