@@ -5,7 +5,6 @@ class Test
 
   def self.run_all!
     Dir['./tests/*'].each do |format|
-      puts "format: #{format}"
       Dir[File.join(format, '*')].each do |test|
         Test.new(test).run
       end
@@ -13,7 +12,6 @@ class Test
   end
 
   def run
-    puts "test: #{@dir}"
     files = Dir[File.join(@dir, '*')].to_a
     output = files.grep(/output/)
     source = (files - output).first
