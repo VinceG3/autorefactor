@@ -18,3 +18,4 @@ require './lib/try_parse/expression'
 require './lib/try_parse/sub_expression'
 require './lib/try_parse/parser'
 Dir['./lib/try_parse/*.rb'].each {|f| require f }
+Dir['./lib/ruby/*.rb'].each {|f| require f }
