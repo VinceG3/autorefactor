@@ -16,8 +16,6 @@ class Test
     @files = Dir[File.join(@dir, '*')].to_a
     @output = files.grep(/output/)
     @source = (files - output).first
-    binding.pry
-    run_complete
   end
 
   def run_complete
