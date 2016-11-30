@@ -12,7 +12,7 @@ class SourceFile
       '.jsx' => JsxAst,
       '.rb' => RbAst,
     }[file_extension]
-    abort("add #{file_extension} to SourceFile")
+    abort("add #{file_extension} to SourceFile") if ast_class.nil?
     @contents ||= ast_class.new(source).parse
   end
 end
