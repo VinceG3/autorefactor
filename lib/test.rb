@@ -4,8 +4,7 @@ class Test
   end
 
   def self.run_all!
-    binding.pry
-    Dir['./tests/*'].each do |format|
+    (Dir['./tests/*'] - Dir['./tests/*'].grep(/\.ignore/)).each do |format|
       Dir[File.join(format, '*')].each do |test|
         Test.new(test).run
       end
