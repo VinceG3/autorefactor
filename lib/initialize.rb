@@ -6,6 +6,8 @@ require 'active_support/inflector'
 require './lib/diff'
 require './lib/test'
 require './lib/what_next'
+require './lib/ast_node'
+require './lib/source_file'
 
 require './lib/try_parse/parse_machine'
 require './lib/try_parse/classifier'
