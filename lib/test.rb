@@ -1,4 +1,5 @@
 class Test
+  attr_reader :dir, :files, :output, :source
   def initialize(dir)
     @dir = dir
   end
@@ -12,9 +13,13 @@ class Test
   end
 
   def run
-    files = Dir[File.join(@dir, '*')].to_a
-    output = files.grep(/output/)
-    source = (files - output).first
+    @files = Dir[File.join(@dir, '*')].to_a
+    @output = files.grep(/output/)
+    @source = (files - output).first
+    run_complete
+  end
+
+  def run_complete
     parsed = SourceFile.new(source).parse.inspect.uncolorize
     if parsed == IO.read(output.first).uncolorize
       puts 'passed'
