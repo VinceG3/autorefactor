@@ -20,7 +20,6 @@ class Test
   end
 
   def run_complete
-    binding.pry
     parsed = SourceFile.new(source).parse.inspect.uncolorize
     if parsed == IO.read(output.first).uncolorize
       puts 'passed'

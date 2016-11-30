@@ -1,23 +1,15 @@
-class SourceFile < AstNode
-  component jsx_component: :body
+class SourceFile
+  attr_reader :file, :source, :contents
 
-  def jsx_component?
-    is_mozilla_parser_output? and has_single_expression?
+  def initialize(file)
+    @file = file
+    @source = IO.read(file)
   end
 
-  def is_mozilla_parser_output?
-    json.keys == ["program", "loc", "type", "comments"]
-  end
-
-  def has_single_expression?
-    json.dig('program', 'body').size == 1
-  end
-
-  def body
-    json.dig('program', 'body')[0]
-  end
-
-  def cleaned_ast
-    json
+  def parse
+    file_extension = File.extname(file)
+    @contents ||= {
+      '.jsx' => JsxAst
+    }[file_extension].new(source).parse
   end
 end
