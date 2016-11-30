@@ -8,7 +8,7 @@ class AstNode
   end
 
   def inspect
-    binding.pry
+    self.class.name
   end
 
   def self.component(*arguments)
