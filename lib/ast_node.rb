@@ -11,11 +11,6 @@ class AstNode
     self.class.name
   end
 
-  def parse
-    binding.pry
-    abort("please define a parse method for #{self.class.name}")
-  end
-
   def self.component(*arguments)
     if arguments.first.class == Hash
       hash = arguments.first
