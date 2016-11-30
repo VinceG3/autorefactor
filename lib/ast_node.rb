@@ -12,6 +12,7 @@ class AstNode
   end
 
   def parse
+    binding.pry
     abort("please define a parse method for #{self.class.name}")
   end
 
