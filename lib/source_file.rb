@@ -8,8 +8,9 @@ class SourceFile
 
   def parse
     file_extension = File.extname(file)
-    @contents ||= {
+    ast_class = {
       '.jsx' => JsxAst
-    }[file_extension].new(source).parse
+    }[file_extension]
+    @contents ||= ast_class.new(source).parse
   end
 end
