@@ -1,3 +1,3 @@
-class RbAst
+class RbAst < AstNode
 
 end
