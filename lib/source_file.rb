@@ -11,6 +11,7 @@ class SourceFile
     ast_class = {
       '.jsx' => JsxAst
     }[file_extension]
+    abort("add #{file_extension} to SourceFile")
     @contents ||= ast_class.new(source).parse
   end
 end
