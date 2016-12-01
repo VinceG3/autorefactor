@@ -25,7 +25,7 @@ class Test
 
     f.pane(:left, orientation: :horizontal).puts IO.read(@source)
     parsed = SourceFile.new(source).parse.inspect.uncolorize
-    f.pane(:right, orientation: :horizontal).puts parsed
+    # f.pane(:right, orientation: :horizontal).puts parsed
 
     f.wait_until_closed
     abort
