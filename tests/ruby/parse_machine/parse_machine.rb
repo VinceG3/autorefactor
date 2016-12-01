@@ -8,34 +8,6 @@ class Expression < Classifier
     when /[=]/
       @has_equals = true
       add_char
-    when /[.]/
-      @has_dot = true
-      add_char
-    when /[(]/
-      @has_paren = true
-      add_char
-      @state = :paren
-    when /[;]/
-      @state = :done
-    when nil
-      @state = :done
-    else
-      what_next
-    end
-  end
-
-  def handle_blank
-    case @char
-    when /[\w]/
-      @state = :sub_unit
-      add_char
-    when /[=]/
-      raise SyntaxError unless sub_units.count == 1
-      @has_equals = true
-      add_char
-    when /[\s]/
-    else
-      what_next
     end
   end
 
