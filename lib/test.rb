@@ -29,6 +29,7 @@ class Test
 
     left_pane.puts IO.read(@source)
     parsed = SourceFile.new(source).parse.inspect.uncolorize
+    right_pane.puts parsed
     
     f.wait_until_closed
     abort
