@@ -25,11 +25,11 @@ class Test
     left_pane.orientation = :horizontal
     right_pane = left_pane.pane(:right)
 
-    left_pane.subpane('source-title').puts('<p>Source:</p>')
+    left_pane.subpane('source-title').puts('Source:', css: 'margin-bottom: 20px')
     left_pane.puts IO.read(@source)
     parsed = SourceFile.new(source).parse.inspect.uncolorize
     
-    right_pane.subpane('parsed-title').puts('<p>Parsed:</p>')
+    right_pane.subpane('parsed-title').puts('Parsed:', css: 'margin-bottom: 20px')
     right_pane.puts parsed
     
     left_pane.wait_until_closed
