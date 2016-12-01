@@ -22,6 +22,7 @@ class Expression < Classifier
 
   def inspect(tab_count = 0)
     abort("Expression: inspect called on nil!") if @sub_unit.nil?
-    "#{self.class.name.downcase.light_blue}: #{@sub_unit.inspect(tab_count + 1)}"
+    "#{self.class.name.downcase.light_blue}: " <<
+    "#{@sub_unit.inspect(tab_count + 1)}"
   end
 end
