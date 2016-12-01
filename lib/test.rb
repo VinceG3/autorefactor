@@ -21,16 +21,18 @@ class Test
 
   def develop_test
     require 'flammarion'
-    f = Flammarion::Engraving.new
+    left_pane = Flammarion::Engraving.new
     f.orientation = :horizontal
-
     right_pane = f.pane(:right)
 
-    f.puts IO.read(@source)
+    left_pane.sub_pane('title').puts('Source:')
+    left_pane.puts IO.read(@source)
     parsed = SourceFile.new(source).parse.inspect.uncolorize
+    
+    right_pane.sub_pane('title').puts('Parsed:')
     right_pane.puts parsed
     
-    f.wait_until_closed
+    left_pane.wait_until_closed
     abort
   end
 
