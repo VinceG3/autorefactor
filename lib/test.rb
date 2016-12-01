@@ -25,8 +25,8 @@ class Test
     left_pane.orientation = :horizontal
 
     left_pane.subpane('source-title').puts('<h2>Source:</h2>', raw: true)
-    left_pane.puts 'hi' # IO.read(@source)
-    parsed = SourceFile.new(source).parse.inspect.uncolorize
+    # left_pane.puts IO.read(@source)
+    # parsed = SourceFile.new(source).parse.inspect.uncolorize
     
     left_pane.pane(:right).subpane('parsed-title')
       .puts('<h2>Parsed:</h2>', raw: true)
