@@ -22,7 +22,7 @@ class Test
   def develop_test
     require 'flammarion'
     left_pane = Flammarion::Engraving.new
-    f.orientation = :horizontal
+    left_pane.orientation = :horizontal
     right_pane = f.pane(:right)
 
     left_pane.sub_pane('title').puts('Source:')
