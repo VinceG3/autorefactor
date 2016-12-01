@@ -23,10 +23,12 @@ class Test
     require 'flammarion'
     f = Flammarion::Engraving.new
 
-    f.pane(:left, orientation: :horizontal).puts IO.read(@source)
-    parsed = SourceFile.new(source).parse.inspect.uncolorize
-    # f.pane(:right, orientation: :horizontal).puts parsed
+    left_pane = f.pane(:left, orientation: :horizontal)
+    right_pane = f.pane(:right, orientation: :horizontal)
 
+    left_pane.puts IO.read(@source)
+    parsed = SourceFile.new(source).parse.inspect.uncolorize
+    
     f.wait_until_closed
     abort
   end
