@@ -16,8 +16,12 @@ class Test
     @files = Dir[File.join(@dir, '*')].to_a
     @output = files.grep(/output/)
     @source = (files - output).first
+    @output.empty? ? run_incomplete : run_complete
+  end
+
+  def run_incomplete
+    parsed = SourceFile.new(source).parse.inspect.uncolorize
     binding.pry
-    run_complete
   end
 
   def run_complete
