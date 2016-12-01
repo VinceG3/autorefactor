@@ -20,9 +20,14 @@ class Test
   end
 
   def develop_test
-    puts IO.read(@source)
+    require 'flammarion'
+    f = Flammarion::Engraving.new
+
+    f.puts IO.read(@source)
     parsed = SourceFile.new(source).parse.inspect.uncolorize
-    puts parsed
+    f.puts parsed
+
+    f.wait_until_closed
     abort
   end
 
