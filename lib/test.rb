@@ -23,9 +23,9 @@ class Test
     require 'flammarion'
     f = Flammarion::Engraving.new
 
-    f.pane.puts IO.read(@source)
+    f.pane(:left).puts IO.read(@source)
     parsed = SourceFile.new(source).parse.inspect.uncolorize
-    f.pane.puts parsed
+    f.pane(:right).puts parsed
 
     f.wait_until_closed
     abort
