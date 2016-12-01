@@ -1,12 +1,7 @@
 #!/usr/bin/env ruby
 require './lib/initialize'
 
-<<<<<<< HEAD
 system('git pull')
 system('git acpe') || abort("save failed")
-=======
-system('git check-pull') || abort('please pull')
-system('git acpe') || abort('save failed')
->>>>>>> 3fedc620ff4c20a373da69abf5a72beb869102d3
 system('clear')
 Test.run_all!
