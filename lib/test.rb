@@ -24,10 +24,9 @@ class Test
     f = Flammarion::Engraving.new
     f.orientation = :horizontal
 
-    left_pane = f.pane(:left)
     right_pane = f.pane(:right)
 
-    left_pane.puts IO.read(@source)
+    f.puts IO.read(@source)
     parsed = SourceFile.new(source).parse.inspect.uncolorize
     right_pane.puts parsed
     
