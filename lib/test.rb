@@ -23,7 +23,7 @@ class Test
     require 'flammarion'
     left_pane = Flammarion::Engraving.new
     left_pane.orientation = :horizontal
-    right_pane = f.pane(:right)
+    right_pane = left_pane.pane(:right)
 
     left_pane.sub_pane('title').puts('Source:')
     left_pane.puts IO.read(@source)
