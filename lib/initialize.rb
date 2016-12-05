@@ -1,6 +1,3 @@
-require 'pry'
-require 'tk'
-require 'colorize'
 require 'active_support/core_ext/object/blank.rb'
 require 'active_support/inflector'
 require './lib/diff'
