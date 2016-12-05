@@ -14,7 +14,7 @@ class WhatNext
     string += "Current State:     #{@parse_machine.state}\n"
     string += "Current Sub unit : #{@parse_machine.sub_unit}\n"
     string += "Current Character: #{@parse_machine.char.inspect}\n"
-    open_window(string)
+    # open_window(string)
     abort
   end
 
@@ -22,5 +22,6 @@ class WhatNext
     require 'flammarion'
     f = Flammarion::Engraving.new
     f.puts string
+    f.wait_until_closed
   end
 end
