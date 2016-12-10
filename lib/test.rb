@@ -23,6 +23,7 @@ class Test
     left = $app.flow(width: 700)
     right = $app.flow(width: 700)
     left.para(IO.read(@source), font: 'Inconsolata')
+    right.button('hi')
   end
 
   def run_complete
