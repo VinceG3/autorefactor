@@ -20,11 +20,9 @@ class Test
   end
 
   def develop_test
-    # puts IO.read(@source)
     Shoes.app do
-      # title 'Source'
-      puts 'hi'
       para 'hi'
+      para @source.inspect
       para IO.read(@source)
     end
   end
