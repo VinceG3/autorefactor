@@ -21,6 +21,7 @@ class Develop
   end
 
   def load_parsers
+    binding.pry
     Dir['./lib/project_types/*'].grep(test.project_name)
   end
 end
