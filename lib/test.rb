@@ -20,11 +20,9 @@ class Test
   end
 
   def develop_test
-    Shoes.app do
-      para 'hi'
-      para @source.inspect
-      para IO.read(@source)
-    end
+    para 'hi'
+    para @source.inspect
+    para IO.read(@source)
   end
 
   def run_complete

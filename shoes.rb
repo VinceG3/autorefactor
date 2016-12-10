@@ -1,3 +1,3 @@
 require './lib/initialize'
 
-Test.run_all
+Shoes.app { Test.run_all }
