@@ -6,6 +6,7 @@ class Develop
   end
 
   def display
+    binding.pry
     source = IO.read(source)
     left = $app.flow(width: 700)
     right = $app.flow(width: 700)
