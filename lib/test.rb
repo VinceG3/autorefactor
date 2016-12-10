@@ -20,10 +20,11 @@ class Test
   end
 
   def develop_test
+    source = IO.read(@source)
     left = $app.flow(width: 700)
     right = $app.flow(width: 700)
-    left.para(IO.read(@source), font: 'Inconsolata')
-    right.button('hi')
+    left.para(source, font: 'Inconsolata')
+    right.para(source.to_a.first, font: 'Inconsolata')
   end
 
   def run_complete
