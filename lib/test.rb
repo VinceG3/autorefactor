@@ -20,8 +20,9 @@ class Test
   end
 
   def develop_test
-    $app.para(IO.read(@source), font: 'Inconsolata',
-                                width: 700)
+    left = $app.flow(width: 700)
+    right = $app.flow(width: 700)
+    left.para(IO.read(@source), font: 'Inconsolata')
   end
 
   def run_complete
