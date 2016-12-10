@@ -21,6 +21,7 @@ class Develop
   end
 
   def load_parsers
+    binding.pry
     Dir['./lib/*'].grep
   end
 end
