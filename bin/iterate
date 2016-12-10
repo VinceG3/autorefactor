@@ -3,4 +3,8 @@
 system('git check-pull') || abort('please pull')
 system('git acpe') || abort('save failed')
 system('clear')
-system('cshoes ./shoes.rb')
+
+require './lib/initialize'
+Text.run_all
+
+# system('cshoes ./shoes.rb')
