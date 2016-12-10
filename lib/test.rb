@@ -21,6 +21,8 @@ class Test
 
   def develop_test
     Shoes.app do
+      button 'push me'
+      title 'hi'
       flow do
         stack do
           title 'Source'
