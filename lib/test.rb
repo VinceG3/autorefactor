@@ -20,7 +20,6 @@ class Test
   end
 
   def develop_test
-    $app.para @source.inspect
     $app.para IO.read(@source)
   end
 
