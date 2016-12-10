@@ -23,17 +23,17 @@ class Test
     Shoes.app do
       button 'push me'
       title 'hi'
-      flow do
-        stack do
-          title 'Source'
-          para IO.read(@source)
-        end
+      # flow do
+      #   stack do
+      #     title 'Source'
+      #     para IO.read(@source)
+      #   end
 
-        stack do
-          title 'Parsed'
-          para parsed
-        end
-      end
+      #   stack do
+      #     title 'Parsed'
+      #     para parsed
+      #   end
+      # end
     end
   end
 
