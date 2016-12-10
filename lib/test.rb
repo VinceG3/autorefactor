@@ -20,7 +20,7 @@ class Test
   end
 
   def develop_test
-    abort('hi')
+    Shoes.app('hi')
   end
 
   def run_complete
