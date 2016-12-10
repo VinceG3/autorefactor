@@ -20,8 +20,7 @@ class Test
   end
 
   def develop_test
-    $app.para Shoes::FONTS
-    $app.para IO.read(@source)
+    $app.para(font: 'Inconsolata') IO.read(@source)
   end
 
   def run_complete
