@@ -7,6 +7,7 @@ system('clear')
 if ARGV.include?('--no-shoes')
   require './lib/initialize'
   require './lib/null_class'
+  $app = NullClass.new
   require 'pry'
   Test.run_all
 else
