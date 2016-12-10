@@ -20,6 +20,7 @@ class Test
   end
 
   def develop_test
+    puts 'hi'
     puts IO.read(@source)
     Shoes.app do
       # title 'Source'
