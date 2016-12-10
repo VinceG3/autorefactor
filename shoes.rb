@@ -1,5 +1,5 @@
 require './lib/initialize'
 
-$app = Shoes.app
+$app = Shoes.app(height: 700, width: 700)
 $app.font './fonts/inconsolata.otf'
 Test.run_all
