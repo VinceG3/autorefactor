@@ -4,9 +4,7 @@ system('git check-pull') || abort('please pull')
 system('git acpe') || abort('save failed')
 system('clear')
 
-require 'pry'; binding.pry
-
-if false
+if ARGV.include?('--no-shoes')
   require './lib/initialize'
   Test.run_all
 else
