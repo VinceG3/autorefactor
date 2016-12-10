@@ -4,7 +4,11 @@ system('git check-pull') || abort('please pull')
 system('git acpe') || abort('save failed')
 system('clear')
 
-# require './lib/initialize'
-# Test.run_all
+require 'pry'; binding.pry
 
-system('cshoes ./shoes.rb')
+if false
+  require './lib/initialize'
+  Test.run_all
+else
+  system('cshoes ./shoes.rb')
+end
