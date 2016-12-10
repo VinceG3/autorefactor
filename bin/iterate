@@ -5,6 +5,6 @@ system('git acpe') || abort('save failed')
 system('clear')
 
 require './lib/initialize'
-Text.run_all
+Test.run_all
 
 # system('cshoes ./shoes.rb')
