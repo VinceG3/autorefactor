@@ -20,20 +20,7 @@ class Test
   end
 
   def develop_test
-    require 'flammarion'
-    left_pane = Flammarion::Engraving.new
-    left_pane.orientation = :horizontal
-
-    left_pane.subpane('source-title').puts('<h2>Source:</h2>', raw: true)
-    left_pane.puts IO.read(@source)
-    parsed = SourceFile.new(source).parse.inspect.uncolorize
-    
-    left_pane.pane(:right).subpane('parsed-title')
-      .puts('<h2>Parsed:</h2>', raw: true)
-    left_pane.pane(:right).puts parsed
-    
-    left_pane.wait_until_closed
-    abort
+    abort('hi')
   end
 
   def run_complete
