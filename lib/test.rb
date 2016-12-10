@@ -21,7 +21,7 @@ class Test
 
   def develop_test
     Shoes.app do
-      title 'Source'
+      # title 'Source'
       para 'hi' #IO.read(@source)
     end
   end
