@@ -1,11 +1,12 @@
 class Develop
+  attr_reader :test, :source
   def initialize(test)
     @test = test
     @source = test.source
   end
 
   def display
-    source = IO.read(@source)
+    source = IO.read(source)
     left = $app.flow(width: 700)
     right = $app.flow(width: 700)
     left.para(source, font: 'Inconsolata')
@@ -20,6 +21,6 @@ class Develop
   end
 
   def load_parsers
-    binding.pry
+    Dir['./lib/*'].grep
   end
 end
