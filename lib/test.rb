@@ -20,13 +20,13 @@ class Test
   end
 
   def develop_test
-    puts IO.read(@source)
-    # Shoes.app do
-    #   # title 'Source'
-    #   puts 'hi'
-    #   para 'hi'
-    #   para IO.read(@source)
-    # end
+    # puts IO.read(@source)
+    Shoes.app do
+      # title 'Source'
+      puts 'hi'
+      para 'hi'
+      para IO.read(@source)
+    end
   end
 
   def run_complete
