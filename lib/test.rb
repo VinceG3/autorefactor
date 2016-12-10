@@ -4,7 +4,7 @@ class Test
     @dir = dir
   end
 
-  def self.run_all
+  def self.run_all!
     (Dir['./tests/*'] - Dir['./tests/*'].grep(/\.ignore/)).each do |format|
       Dir[File.join(format, '*')].each do |test|
         Test.new(test).run
@@ -20,7 +20,19 @@ class Test
   end
 
   def develop_test
-    Shoes.app { button 'push me' }
+    Shoes.app do
+      flow do
+        stack do
+          title 'Source'
+          para IO.read(@source)
+        end
+
+        stack do
+          title 'Parsed'
+          para parsed
+        end
+      end
+    end
   end
 
   def run_complete
