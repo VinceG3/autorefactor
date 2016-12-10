@@ -23,6 +23,7 @@ class Test
     Shoes.app do
       # title 'Source'
       puts 'hi'
+      para 'hi'
       para IO.read(@source)
     end
   end
