@@ -6,6 +6,7 @@ system('clear')
 
 if ARGV.include?('--no-shoes')
   require './lib/initialize'
+  require 'pry'
   Test.run_all
 else
   system('cshoes ./shoes.rb')
