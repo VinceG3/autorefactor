@@ -5,7 +5,7 @@ class Test
   end
 
   def project_name
-    binding.pry
+    dir.match(/.\/tests\/(\w+)\//)[1]
   end
 
   def self.run_all
