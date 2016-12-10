@@ -20,11 +20,7 @@ class Test
   end
 
   def develop_test
-    source = IO.read(@source)
-    left = $app.flow(width: 700)
-    right = $app.flow(width: 700)
-    left.para(source, font: 'Inconsolata')
-    right.para(source.each_char.to_a.first, font: 'Inconsolata')
+    Develop.new(self).iterate
   end
 
   def run_complete
