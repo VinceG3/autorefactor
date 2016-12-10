@@ -4,6 +4,10 @@ class Test
     @dir = dir
   end
 
+  def project_name
+    binding.pry
+  end
+
   def self.run_all
     (Dir['./tests/*'] - Dir['./tests/*'].grep(/\.ignore/)).each do |format|
       Dir[File.join(format, '*')].each do |test|
