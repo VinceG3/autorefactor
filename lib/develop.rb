@@ -6,12 +6,11 @@ class Develop
   end
 
   def display
-    binding.pry
-    source = IO.read(source)
+    source_text = IO.read(source)
     left = $app.flow(width: 700)
     right = $app.flow(width: 700)
-    left.para(source, font: 'Inconsolata')
-    next_char = source.each_char.to_a.first
+    left.para(source_text, font: 'Inconsolata')
+    next_char = source_text.each_char.to_a.first
     right.para("next char: #{next_char}", font: 'Inconsolata')
   end
 
