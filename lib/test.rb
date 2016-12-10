@@ -5,7 +5,6 @@ class Test
   end
 
   def self.run_all
-    para 'hi'
     (Dir['./tests/*'] - Dir['./tests/*'].grep(/\.ignore/)).each do |format|
       Dir[File.join(format, '*')].each do |test|
         Test.new(test).run
@@ -21,9 +20,8 @@ class Test
   end
 
   def develop_test
-    para 'hi'
-    para @source.inspect
-    para IO.read(@source)
+    $app.para @source.inspect
+    $app.para IO.read(@source)
   end
 
   def run_complete

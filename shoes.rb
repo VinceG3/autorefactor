@@ -1,3 +1,4 @@
 require './lib/initialize'
 
-Shoes.app { Test.run_all }
+$app = Shoes.app
+Test.run_all
