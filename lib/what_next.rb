@@ -19,9 +19,5 @@ class WhatNext
   end
 
   def open_window(string)
-    require 'flammarion'
-    f = Flammarion::Engraving.new
-    f.puts string
-    f.wait_until_closed
   end
 end
