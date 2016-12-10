@@ -20,7 +20,7 @@ class Test
   end
 
   def develop_test
-    Shoes.app('hi')
+    Shoes.app { button 'push me' }
   end
 
   def run_complete
