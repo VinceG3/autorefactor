@@ -21,7 +21,7 @@ class Develop
   end
 
   def load_parsers
-    dir = Dir['./lib/project_types/*'].grep(test.project_name)
+    dir = Dir['./lib/project_types/*'].grep(Regexp.new(test.project_name))
     binding.pry
   end
 end
