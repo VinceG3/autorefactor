@@ -24,7 +24,7 @@ class Test
     left = $app.flow(width: 700)
     right = $app.flow(width: 700)
     left.para(source, font: 'Inconsolata')
-    right.para(source.to_a.first, font: 'Inconsolata')
+    right.para(source.each_char.to_a.first, font: 'Inconsolata')
   end
 
   def run_complete
