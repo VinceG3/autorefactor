@@ -15,6 +15,11 @@ class Develop
 
   def iterate
     display
-    
+    load_parsers
+    pick_new_parser
+  end
+
+  def load_parsers
+    binding.pry
   end
 end
