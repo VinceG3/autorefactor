@@ -20,6 +20,7 @@ class Test
   end
 
   def develop_test
+    $app.para Shoes::Fonts
     $app.para IO.read(@source)
   end
 
