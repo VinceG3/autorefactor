@@ -20,7 +20,8 @@ class Test
   end
 
   def develop_test
-    $app.para(IO.read(@source), font: 'Inconsolata')
+    $app.para(IO.read(@source), font: 'Inconsolata',
+                                width: 700)
   end
 
   def run_complete
