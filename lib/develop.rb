@@ -1,10 +1,10 @@
 class Develop
-  attr_reader :test, :source, :left, :right
+  attr_reader :test, :source
   def initialize(test)
     @test = test
     @source = test.source
-    @left = $app.flow(width: 700)
-    @right = $app.flow(width: 400)
+    $left = $app.flow(width: 700)
+    $right = $app.flow(width: 400)
   end
 
   def display

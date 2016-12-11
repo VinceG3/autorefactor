@@ -25,9 +25,9 @@ class Parser
   end
 
   def self.pick_new
-    right.clear
-    right.para 'No parsers! Pick one:'
-    buttons = right.stack
+    $right.clear
+    $right.para 'No parsers! Pick one:'
+    buttons = $right.stack
     buttons.button('Collector') { new_parser(:collector) }
     buttons.button('Separator') { new_parser(:separator) }
     buttons.button('Classifier') { new_parser(:classifier) }
@@ -35,8 +35,8 @@ class Parser
   end
 
   def self.pick
-    right.clear
-    parser_buttons = right.stack
+    $right.clear
+    parser_buttons = $right.stack
     parser_buttons.para 'Pick a parser or make a new one:'
     @parsers.each do |parser|
       parser_buttons.button(parser.name) { iterate_parser(parser) }
@@ -45,8 +45,8 @@ class Parser
   end
 
   def iterate
-    right.clear
-    right.para "Iterating #{name}"
+    $right.clear
+    $right.para "Iterating #{name}"
   end
 
   def self.load_all(test)
