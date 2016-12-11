@@ -52,7 +52,7 @@ class Parser
   def self.load_all(test)
     dir = Dir['./lib/project_types/*'].grep(Regexp.new(test.project_name)).first
     files = Dir[File.join dir, '*.parser']
-    @parsers = files.collect{|f| self.class.load(f) }
+    @parsers = files.collect{|f| load(f) }
   end
 
   def self.make(parser_type, name = nil)
