@@ -36,6 +36,6 @@ class Develop
   end
 
   def new_parser(parser_type)
-    alert("Please name your new #{parser_type}")
+    ask("Please name your new #{parser_type}")
   end
 end
