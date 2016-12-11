@@ -28,10 +28,14 @@ class Develop
     if @parsers.empty?
       right.para 'No parsers! Pick one:'
       buttons = right.stack
-      buttons.button('Collector')
-      buttons.button('Separator')
-      buttons.button('Classifier')
-      buttons.button('Terminal')
+      buttons.button('Collector') { new_parser(:collector) }
+      buttons.button('Separator') { new_parser(:separator) }
+      buttons.button('Classifier') { new_parser(:classifier) }
+      buttons.button('Terminal') { new_parser(:terminal) }
     end
+  end
+
+  def new_parser(parser_type)
+    alert("Please name your new #{parser_type}")
   end
 end
