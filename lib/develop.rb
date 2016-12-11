@@ -13,9 +13,11 @@ class Develop
   end
 
   def iterate
-    display
-    load_parsers
-    pick_new_parser
+    loop do
+      display
+      load_parsers
+      pick_new_parser
+    end
   end
 
   def load_parsers
@@ -36,6 +38,7 @@ class Develop
   end
 
   def new_parser(parser_type)
-    ask("Please name your new #{parser_type}")
+    name = ask("Please name your new #{parser_type}")
+    Parser.create(name: name, type: parser_type)
   end
 end
