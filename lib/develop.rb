@@ -22,7 +22,7 @@ class Develop
 
   def load_parsers
     dir = Dir['./lib/project_types/*'].grep(Regexp.new(test.project_name)).first
-    files = Dir[File.join dir.first, '*.parser']
+    files = Dir[File.join dir, '*.parser']
     @parsers = files.collect{|f| Parser.load(f) }
   end
 
