@@ -28,11 +28,13 @@ class Develop
 
   def pick_new_parser
     if @parsers.empty?
-      right.para 'No Parsers! Select one:'
-      right.button('Collector')
-      right.button('Separator')
-      right.button('Classifier')
-      right.button('Terminal')
+      right.stack do
+        right.para 'No Parsers! Select one:'
+        right.button('Collector')
+        right.button('Separator')
+        right.button('Classifier')
+        right.button('Terminal')
+      end
     end
   end
 end
