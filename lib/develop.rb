@@ -38,8 +38,8 @@ class Develop
 
   def pick_parser
     right.clear
-    right.para 'Pick a parser or make a new one:'
     parser_buttons = right.stack
+    parser_buttons.para 'Pick a parser or make a new one:'
     @parsers.each do |parser|
       parser_buttons.button(parser.name) { iterate_parser(parser) }
     end
