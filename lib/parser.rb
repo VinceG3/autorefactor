@@ -16,7 +16,7 @@ class Parser
     IO.write(filename, YAML.dump(self))
   end
 
-  def self.load
+  def self.load(filename)
 
   end
 
