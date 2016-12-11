@@ -40,6 +40,7 @@ class Develop
 
   def new_parser(parser_type)
     name = $app.ask("Please name your new #{parser_type}")
+    binding.pry
     Parser.create(name: name, type: parser_type, project: test.project_name)
   end
 end
