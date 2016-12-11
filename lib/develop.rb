@@ -9,7 +9,7 @@ class Develop
 
   def display
     source_text = IO.read(source)
-    left.para(source_text, font: 'Inconsolata')
+    $left.para(source_text, font: 'Inconsolata')
   end
 
   def iterate
