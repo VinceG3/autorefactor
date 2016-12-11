@@ -8,8 +8,8 @@ class Parser
     @project = project
   end
 
-  def self.create(name:, type:)
-    new(name: name, type: type).save
+  def self.create(name:, type:, project:)
+    new(name: name, type: type, project: project).save
   end
 
   def save
