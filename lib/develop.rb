@@ -28,6 +28,7 @@ class Develop
 
   def pick_new_parser
     if @parsers.empty?
+      right.clear
       right.para 'No parsers! Pick one:'
       buttons = right.stack
       buttons.button('Collector') { new_parser(:collector) }
