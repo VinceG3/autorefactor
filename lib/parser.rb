@@ -9,7 +9,7 @@ class Parser
   end
 
   def create(name:, type:)
-    alert('creating')
+    binding.pry
     new(name: name, type: type).save
   end
 
