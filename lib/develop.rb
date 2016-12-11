@@ -26,12 +26,11 @@ class Develop
 
   def pick_new_parser
     if @parsers.empty?
-      right.stack do
-        button('Collector')
-        button('Separator')
-        button('Classifier')
-        button('Terminal')
-      end
+      buttons =  right.stack
+      buttons.button('Collector')
+      buttons.button('Separator')
+      buttons.button('Classifier')
+      buttons.button('Terminal')
     end
   end
 end
