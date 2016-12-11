@@ -16,7 +16,7 @@ class Develop
     # loop do
       display
       Parser.load_all(test)
-      @parsers.empty? ? Parser.pick_new : Parser.pick
+      Parser.empty? ? Parser.pick_new : Parser.pick
     # end
   end
 end

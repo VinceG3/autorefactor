@@ -55,6 +55,10 @@ class Parser
     @parsers = files.collect{|f| load(f) }
   end
 
+  def self.empty?
+    @parsers.empty?
+  end
+
   def self.make(parser_type, name = nil)
     name = $app.ask("Please name your new #{parser_type}") if name.nil?
     Parser.create(name: name, type: parser_type, project: test.project_name)
