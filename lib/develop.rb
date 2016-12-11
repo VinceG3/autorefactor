@@ -26,7 +26,8 @@ class Develop
 
   def pick_new_parser
     if @parsers.empty?
-      buttons =  right.stack
+      right.para 'No parsers! Pick one:'
+      buttons = right.stack
       buttons.button('Collector')
       buttons.button('Separator')
       buttons.button('Classifier')
