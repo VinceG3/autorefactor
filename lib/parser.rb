@@ -9,11 +9,11 @@ class Parser
   end
 
   def create(name:, type:)
+    alert('creating')
     new(name: name, type: type).save
   end
 
   def save
-    alert('saving!')
     IO.write(filename, YAML.dump(self))
   end
 
