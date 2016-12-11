@@ -17,7 +17,7 @@ class Parser
   end
 
   def self.load(filename)
-
+    YAML.load(filename)
   end
 
   def filename

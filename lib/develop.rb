@@ -16,7 +16,7 @@ class Develop
     # loop do
       display
       load_parsers
-      pick_new_parser
+      @parsers.empty? ? pick_new_parser : pick_parser
     # end
   end
 
@@ -27,16 +27,28 @@ class Develop
   end
 
   def pick_new_parser
-    if @parsers.empty?
-      right.clear
-      right.para 'No parsers! Pick one:'
-      buttons = right.stack
-      buttons.button('Collector') { new_parser(:collector) }
-      buttons.button('Separator') { new_parser(:separator) }
-      buttons.button('Classifier') { new_parser(:classifier) }
-      buttons.button('Terminal') { new_parser(:terminal) }
+    right.clear
+    right.para 'No parsers! Pick one:'
+    buttons = right.stack
+    buttons.button('Collector') { new_parser(:collector) }
+    buttons.button('Separator') { new_parser(:separator) }
+    buttons.button('Classifier') { new_parser(:classifier) }
+    buttons.button('Terminal') { new_parser(:terminal) }
+  end
+
+  def pick_parser
+    right.clear
+    right.para 'Pick a parser or make a new one:'
+    parser_buttons = right.stack
+    @parsers.each do |parser|
+      parser_buttons.button(parser.name) { iterate_parser(parser) }
     end
-    new_parser(:collector, 'Expressions')
+    parser_buttons.button('New Parser') { pick_new_parser }
+  end
+
+  def iterate_parser(parser)
+    right.clear
+    right.para "Iterating #{parser.name}"
   end
 
   def new_parser(parser_type, name = nil)
