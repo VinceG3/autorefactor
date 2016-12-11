@@ -1,4 +1,4 @@
-class Parser < Collector
+class Parser2 < Collector
   attr_reader :source, :resolution
 
   def handle_expression
