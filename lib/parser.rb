@@ -39,9 +39,9 @@ class Parser
     parser_buttons = $right.stack
     parser_buttons.para 'Pick a parser or make a new one:'
     @parsers.each do |parser|
-      parser_buttons.button(parser.name) { iterate_parser(parser) }
+      parser_buttons.button(parser.name) { parser.iterate }
     end
-    parser_buttons.button('New Parser') { pick_new_parser }
+    parser_buttons.button('New Parser') { pick_new }
   end
 
   def iterate
