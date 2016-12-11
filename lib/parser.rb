@@ -8,8 +8,7 @@ class Parser
     @project = project
   end
 
-  def create(name:, type:)
-    binding.pry
+  def self.create(name:, type:)
     new(name: name, type: type).save
   end
 
