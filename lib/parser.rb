@@ -16,6 +16,10 @@ class Parser
     IO.write(filename, YAML.dump(self))
   end
 
+  def load
+
+  end
+
   def filename
     File.join('.', 'lib', 'project_types', project, "#{name}.parser")
   end
