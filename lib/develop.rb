@@ -10,8 +10,6 @@ class Develop
   def display
     source_text = IO.read(source)
     left.para(source_text, font: 'Inconsolata')
-    next_char = source_text.each_char.to_a.first
-    right.para("next char: #{next_char}", font: 'Inconsolata')
   end
 
   def iterate
