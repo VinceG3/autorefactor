@@ -36,11 +36,11 @@ class Develop
       buttons.button('Classifier') { new_parser(:classifier) }
       buttons.button('Terminal') { new_parser(:terminal) }
     end
+    new_parser(:collector)
   end
 
   def new_parser(parser_type)
     name = $app.ask("Please name your new #{parser_type}")
-    binding.pry
     Parser.create(name: name, type: parser_type, project: test.project_name)
   end
 end
