@@ -17,6 +17,7 @@ class Parser
   end
 
   def self.load(filename)
+    binding.pry
     YAML.load(filename)
   end
 
