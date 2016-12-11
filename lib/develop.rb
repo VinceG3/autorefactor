@@ -13,11 +13,11 @@ class Develop
   end
 
   def iterate
-    loop do
+    # loop do
       display
       load_parsers
       pick_new_parser
-    end
+    # end
   end
 
   def load_parsers
