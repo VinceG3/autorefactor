@@ -61,7 +61,7 @@ class Parser
     create(
       name: name,
       type: parser_type,
-      project: test.project_name,
+      project: test.project_type,
       is_first: is_first
     )
   end
