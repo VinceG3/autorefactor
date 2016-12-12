@@ -33,7 +33,6 @@ class Parser
     buttons.button('Separator') { make(project_type, :separator, is_first) }
     buttons.button('Classifier') { make(project_type, :classifier, is_first) }
     buttons.button('Terminal') { make(project_type, :terminal, is_first) }
-    make(project_type, :collector, is_first)
   end
 
   def self.pick
@@ -57,7 +56,7 @@ class Parser
   end
 
   def self.make(project, parser_type, is_first = false)
-    name = 'Expressions' # $app.ask("Please name your new #{parser_type}")
+    name = $app.ask("Please name your new #{parser_type}")
     create(
       name: name,
       type: parser_type,
