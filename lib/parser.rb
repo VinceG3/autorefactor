@@ -23,6 +23,7 @@ class Parser
   end
 
   def save
+    alert(filename)
     IO.write(filename, YAML.dump(self))
   end
 
@@ -66,7 +67,6 @@ class Parser
 
   def self.make(project, parser_type, is_first = false)
     name = $app.ask("Please name your new #{parser_type}")
-    alert('making!')
     create(
       name: name,
       type: parser_type,
