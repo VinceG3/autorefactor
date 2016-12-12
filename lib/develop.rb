@@ -22,6 +22,7 @@ class Develop
       Parser.pick_new(:first)
     else
       parsed = Parser.find_containing(test).parse(source)
+      $right.para 'iterating!'
     end
   end
 end
