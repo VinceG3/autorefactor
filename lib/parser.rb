@@ -18,6 +18,7 @@ class Parser
     stack.para "type: #{type}"
     stack.para "project: #{project}"
     stack.para "is_first: #{is_first}"
+    alert('hi')
     new(name: name, type: type, project: project.name).save
   end
 
