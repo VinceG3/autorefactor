@@ -10,6 +10,7 @@ class Parser
   end
 
   def self.create(name:, type:, project:, is_first: false)
+    alert('creating!')
     $right.clear
     $right.stack do
       para "Writing!"
