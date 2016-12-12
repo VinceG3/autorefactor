@@ -7,6 +7,10 @@ class Develop
     $right = $app.flow(width: 400)
   end
 
+  def project_type
+    test.project_type
+  end
+
   def display
     source_text = IO.read(source)
     $left.para(source_text, font: 'Inconsolata')

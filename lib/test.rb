@@ -4,8 +4,8 @@ class Test
     @dir = dir
   end
 
-  def project_name
-    dir.match(/.\/tests\/(\w+)\//)[1]
+  def project_type
+    @project_type ||= ProjectType.new(dir.match(/.\/tests\/(\w+)\//)[1])
   end
 
   def self.run_all
