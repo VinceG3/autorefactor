@@ -33,6 +33,7 @@ class Parser
     buttons.button('Separator') { make(:separator, is_first) }
     buttons.button('Classifier') { make(:classifier, is_first) }
     buttons.button('Terminal') { make(:terminal, is_first) }
+    make(:collector, is_first)
   end
 
   def self.pick
@@ -56,7 +57,7 @@ class Parser
   end
 
   def self.make(parser_type, is_first = false)
-    name = $app.ask("Please name your new #{parser_type}")
+    name = 'Expressions' # $app.ask("Please name your new #{parser_type}")
     create(
       name: name,
       type: parser_type,
@@ -66,6 +67,6 @@ class Parser
   end
 
   def find_containing(test)
-    
+
   end
 end
