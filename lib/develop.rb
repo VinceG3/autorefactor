@@ -13,10 +13,12 @@ class Develop
   end
 
   def iterate
-    # loop do
-      display
-      Parser.load_all(test)
-      Parser.empty? ? Parser.pick_new : Parser.pick
-    # end
+    display
+    Parser.load_all(test)
+    if Parser.empty?
+      Parser.pick_new(:first)
+    else
+      parsed = Parser.find_containing(test).parse(source)
+    end
   end
 end

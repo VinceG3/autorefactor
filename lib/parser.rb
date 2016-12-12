@@ -1,14 +1,15 @@
 class Parser
-  attr_reader :name, :type, :file, :project
+  attr_reader :name, :type, :file, :project, :is_first
 
-  def initialize(file = nil, name:, type:, project:)
+  def initialize(file = nil, name:, type:, project:, is_first: false)
     @file = file
     @name = name
     @type = type
     @project = project
+    @is_first = is_first
   end
 
-  def self.create(name:, type:, project:)
+  def self.create(name:, type:, project:, is_first: false)
     new(name: name, type: type, project: project).save
   end
 
@@ -24,14 +25,14 @@ class Parser
     File.join('.', 'lib', 'project_types', project, "#{name}.parser")
   end
 
-  def self.pick_new
+  def self.pick_new(is_first = false)
     $right.clear
     $right.para 'No parsers! Pick one:'
     buttons = $right.stack
-    buttons.button('Collector') { new_parser(:collector) }
-    buttons.button('Separator') { new_parser(:separator) }
-    buttons.button('Classifier') { new_parser(:classifier) }
-    buttons.button('Terminal') { new_parser(:terminal) }
+    buttons.button('Collector') { make(:collector, is_first) }
+    buttons.button('Separator') { make(:separator, is_first) }
+    buttons.button('Classifier') { make(:classifier, is_first) }
+    buttons.button('Terminal') { make(:terminal, is_first) }
   end
 
   def self.pick
@@ -47,20 +48,24 @@ class Parser
   def iterate
     $right.clear
     $right.para "Iterating #{name}"
-  end
 
-  def self.load_all(test)
-    dir = Dir['./lib/project_types/*'].grep(Regexp.new(test.project_name)).first
-    files = Dir[File.join dir, '*.parser']
-    @parsers = files.collect{|f| load(f) }
   end
 
   def self.empty?
     @parsers.empty?
   end
 
-  def self.make(parser_type, name = nil)
-    name = $app.ask("Please name your new #{parser_type}") if name.nil?
-    Parser.create(name: name, type: parser_type, project: test.project_name)
+  def self.make(parser_type, is_first = false)
+    name = $app.ask("Please name your new #{parser_type}")
+    create(
+      name: name,
+      type: parser_type,
+      project: test.project_name,
+      is_first: is_first
+    )
+  end
+
+  def find_containing(test)
+    
   end
 end
