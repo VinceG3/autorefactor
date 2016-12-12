@@ -29,11 +29,11 @@ class Parser
     $right.clear
     $right.para 'No parsers! Pick one:'
     buttons = $right.stack
-    buttons.button('Collector') { make(project, :collector, is_first) }
-    buttons.button('Separator') { make(project, :separator, is_first) }
-    buttons.button('Classifier') { make(project, :classifier, is_first) }
-    buttons.button('Terminal') { make(project, :terminal, is_first) }
-    make(:collector, is_first)
+    buttons.button('Collector') { make(project_type, :collector, is_first) }
+    buttons.button('Separator') { make(project_type, :separator, is_first) }
+    buttons.button('Classifier') { make(project_type, :classifier, is_first) }
+    buttons.button('Terminal') { make(project_type, :terminal, is_first) }
+    make(project_type, :collector, is_first)
   end
 
   def self.pick
