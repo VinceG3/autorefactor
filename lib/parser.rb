@@ -1,16 +1,16 @@
 class Parser
   attr_reader :name, :type, :file, :project, :is_first
 
-  def initialize(file = nil, name:, type:, project:, is_first: false)
+  def initialize(file = nil, name:, type:, project_name:, is_first: false)
     @file = file
     @name = name
     @type = type
-    @project = project
+    @project_name = project_name
     @is_first = is_first
   end
 
   def self.create(name:, type:, project:, is_first: false)
-    new(name: name, type: type, project: project).save
+    new(name: name, type: type, project: project.name).save
   end
 
   def save
