@@ -3,8 +3,6 @@ class Develop
   def initialize(test)
     @test = test
     @source = test.source
-    $left = $app.flow(width: 700)
-    $right = $app.flow(width: 400)
   end
 
   def project_type
