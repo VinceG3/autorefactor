@@ -18,7 +18,6 @@ class Parser
     stack.para "type: #{type}"
     stack.para "project: #{project}"
     stack.para "is_first: #{is_first}"
-    alert('hi')
     new(name: name, type: type, project: project.name).save
   end
 
@@ -45,15 +44,15 @@ class Parser
     buttons.button('Terminal') { make(project_type, :terminal, is_first) }
   end
 
-  def self.pick
-    $right.clear
-    parser_buttons = $right.stack
-    parser_buttons.para 'Pick a parser or make a new one:'
-    @parsers.each do |parser|
-      parser_buttons.button(parser.name) { parser.iterate }
-    end
-    parser_buttons.button('New Parser') { pick_new }
-  end
+  # def self.pick
+  #   $right.clear
+  #   parser_buttons = $right.stack
+  #   parser_buttons.para 'Pick a parser or make a new one:'
+  #   @parsers.each do |parser|
+  #     parser_buttons.button(parser.name) { parser.iterate }
+  #   end
+  #   parser_buttons.button('New Parser') { pick_new }
+  # end
 
   def iterate
     $right.clear
