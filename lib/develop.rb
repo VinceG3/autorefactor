@@ -18,8 +18,7 @@ class Develop
 
   def iterate
     display
-    Parser.load_all(test)
-    if Parser.empty?
+    if ProjectType.parsers.empty?
       Parser.pick_new(:first)
     else
       parsed = Parser.find_containing(test).parse(source)
