@@ -12,13 +12,12 @@ class Parser
   def self.create(name:, type:, project:, is_first: false)
     alert('creating!')
     $right.clear
-    $right.stack do
-      para "Writing!"
-      para "name: #{name}"
-      para "type: #{type}"
-      para "project: #{project}"
-      para "is_first: #{is_first}"
-    end
+    stack = $right.stack
+    stack.para "Writing!"
+    stack.para "name: #{name}"
+    stack.para "type: #{type}"
+    stack.para "project: #{project}"
+    stack.para "is_first: #{is_first}"
     new(name: name, type: type, project: project.name).save
   end
 
