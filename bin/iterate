@@ -7,7 +7,7 @@ system('clear')
 if ARGV.include?('--no-shoes')
   require './lib/initialize'
   require './lib/null_class'
-  $app, $left, $right = NullClass.new
+  $app, $left, $right = NullClass.new * 3
   require 'pry'
   Test.run_all
 else
