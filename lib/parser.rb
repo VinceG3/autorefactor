@@ -23,7 +23,7 @@ class Parser
   end
 
   def save
-    alert(filename)
+    alert('saving!')
     IO.write(filename, YAML.dump(self))
   end
 
