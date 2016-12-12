@@ -17,7 +17,6 @@ class Develop
   def iterate
     display
     if project_type.parsers.empty?
-      puts project_type.name
       Parser.pick_new(project_type, :first)
     else
       parsed = Parser.find_containing(test).parse(source)
