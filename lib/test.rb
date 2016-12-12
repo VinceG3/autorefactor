@@ -5,7 +5,6 @@ class Test
   end
 
   def project_type
-    binding.pry
     @project_type ||= ProjectType.new(dir.match(/.\/tests\/(\w+)\//)[1])
   end
 
