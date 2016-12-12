@@ -8,6 +8,7 @@ require './lib/parser'
 require './lib/what_next'
 require './lib/ast_node'
 require './lib/source_file'
+require './lib/project_type'
 
 require './lib/try_parse/parse_machine'
 require './lib/try_parse/classifier'
