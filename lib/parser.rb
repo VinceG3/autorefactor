@@ -25,14 +25,14 @@ class Parser
     File.join('.', 'lib', 'project_types', project, "#{name}.parser")
   end
 
-  def self.pick_new(is_first = false)
+  def self.pick_new(project_type, is_first = false)
     $right.clear
     $right.para 'No parsers! Pick one:'
     buttons = $right.stack
-    buttons.button('Collector') { make(:collector, is_first) }
-    buttons.button('Separator') { make(:separator, is_first) }
-    buttons.button('Classifier') { make(:classifier, is_first) }
-    buttons.button('Terminal') { make(:terminal, is_first) }
+    buttons.button('Collector') { make(project, :collector, is_first) }
+    buttons.button('Separator') { make(project, :separator, is_first) }
+    buttons.button('Classifier') { make(project, :classifier, is_first) }
+    buttons.button('Terminal') { make(project, :terminal, is_first) }
     make(:collector, is_first)
   end
 
@@ -56,7 +56,7 @@ class Parser
     @parsers.empty?
   end
 
-  def self.make(parser_type, is_first = false)
+  def self.make(project, parser_type, is_first = false)
     name = 'Expressions' # $app.ask("Please name your new #{parser_type}")
     create(
       name: name,
