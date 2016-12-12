@@ -22,7 +22,7 @@ class Parser
   end
 
   def filename
-    File.join('.', 'lib', 'project_types', project, "#{name}.parser")
+    File.join('.', 'lib', 'project_types', project.name, "#{name}.parser")
   end
 
   def self.pick_new(project_type, is_first = false)
