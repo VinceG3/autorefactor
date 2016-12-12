@@ -9,7 +9,7 @@ class ProjectType
     @parsers ||= load_parsers
   end
 
-  def self.load_parsers(test)
+  def self.load_parsers
     dir = Dir['./lib/project_types/*'].grep(Regexp.new(name)).first
     files = Dir[File.join dir, '*.parser']
     @parsers = files.collect{|f| Parser.load(f) }
