@@ -1,10 +1,10 @@
 class Parser
   attr_reader :name, :type, :file, :project_name, :is_first, :classifiers
 
-  def initialize(file = nil, classifiers: [], name:, type:, project_name:, is_first: false)
-    @file = file
+  def initialize(classifiers: [], name:, type:, project_name:, is_first: false)
     @name = name
     @type = type
+    @classifiers = classifiers
     @project_name = project_name
     @is_first = is_first
   end
