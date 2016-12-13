@@ -10,7 +10,10 @@ class Parser
   end
 
   def self.create(name:, type:, project:, is_first: false)
-    new(name: name, type: type, project_name: project.name).save
+    new(name: name,
+        type: type,
+        project_name: project.name,
+        is_first: is_first).save
   end
 
   def save
