@@ -17,7 +17,7 @@ class Parser
     stack.para "type: #{type}"
     stack.para "project: #{project}"
     stack.para "is_first: #{is_first}"
-    new(name: name, type: type, project: project.name).save
+    new(name: name, type: type, project_name: project.name).save
   end
 
   def save
