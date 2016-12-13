@@ -26,8 +26,8 @@ class Develop
     if project_type.parsers.empty?
       Parser.pick_new(project_type, :first)
     else
+      parsed = ProjectType.parse_text(source)
       binding.pry
-      parsed = Parser.find_containing(test).parse(source)
     end
   end
 end
