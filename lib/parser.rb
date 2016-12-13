@@ -21,7 +21,7 @@ class Parser
   end
 
   def save
-    alert('saving!')
+    $app.alert('saving!')
     IO.write(filename, YAML.dump(self))
   end
 
