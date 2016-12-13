@@ -34,4 +34,8 @@ class ProjectType
   def parse_text(string)
     first_parser.parse_string(string)
   end
+
+  def first_parser
+    all.find{|p| p.is_first == true }
+  end
 end
