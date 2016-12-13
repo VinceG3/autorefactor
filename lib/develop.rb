@@ -15,12 +15,7 @@ class Develop
   end
 
   def loop_until_finished
-    retval = nil
-    loop do
-      retval = iterate
-      alert("noshoes is #{$noshoes.inspect}")
-      break
-    end
+    loop { iterate }
   end
 
   def iterate
