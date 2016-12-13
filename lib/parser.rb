@@ -12,7 +12,7 @@ class Parser
   def self.create(name:, type:, project:, is_first: false)
     $right.clear
     stack = $right.stack
-    stack.para "Writing!"
+    stack.para "Creating!"
     stack.para "name: #{name}"
     stack.para "type: #{type}"
     stack.para "project: #{project}"
