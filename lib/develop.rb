@@ -23,6 +23,7 @@ class Develop
 
   def iterate
     display
+    binding.pry
     if project_type.parsers.empty?
       Parser.pick_new(project_type, :first)
     else
