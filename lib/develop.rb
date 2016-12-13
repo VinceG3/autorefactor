@@ -14,13 +14,19 @@ class Develop
     $left.para(source_text, font: 'Inconsolata')
   end
 
+  def loop_until_finished
+    until retval == finished
+      retval = iterate
+    end
+  end
+
   def iterate
     display
     if project_type.parsers.empty?
       Parser.pick_new(project_type, :first)
     else
+      binding.pry
       parsed = Parser.find_containing(test).parse(source)
-      $right.para 'iterating!'
     end
   end
 end

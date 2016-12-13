@@ -24,7 +24,7 @@ class Test
   end
 
   def develop_test
-    Develop.new(self).iterate
+    Develop.new(self).loop_until_finished
   end
 
   def run_complete

@@ -10,13 +10,6 @@ class Parser
   end
 
   def self.create(name:, type:, project:, is_first: false)
-    $right.clear
-    stack = $right.stack
-    stack.para "Creating!"
-    stack.para "name: #{name}"
-    stack.para "type: #{type}"
-    stack.para "project: #{project}"
-    stack.para "is_first: #{is_first}"
     new(name: name, type: type, project_name: project.name).save
   end
 
