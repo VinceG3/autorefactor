@@ -1,5 +1,5 @@
 class Parser
-  attr_reader :name, :type, :file, :project, :is_first
+  attr_reader :name, :type, :file, :project_name, :is_first
 
   def initialize(file = nil, name:, type:, project_name:, is_first: false)
     @file = file
