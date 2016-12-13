@@ -77,8 +77,4 @@ class Parser
       is_first: is_first
     )
   end
-
-  def find_containing(test)
-
-  end
 end
