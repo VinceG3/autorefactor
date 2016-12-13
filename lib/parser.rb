@@ -13,7 +13,7 @@ class Parser
     new(name: name,
         type: type,
         project_name: project.name,
-        is_first: is_first).save
+        is_first: !!is_first).save
   end
 
   def save
