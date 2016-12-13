@@ -30,7 +30,7 @@ class Parser
   end
 
   def project
-    ProjectType.find_by_name(name)
+    ProjectType.find_by_name(project_name)
   end
 
   def filename
