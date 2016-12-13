@@ -1,7 +1,7 @@
 class Parser
-  attr_reader :name, :type, :file, :project_name, :is_first
+  attr_reader :name, :type, :file, :project_name, :is_first, :classifiers
 
-  def initialize(file = nil, name:, type:, project_name:, is_first: false)
+  def initialize(file = nil, classifiers: [], name:, type:, project_name:, is_first: false)
     @file = file
     @name = name
     @type = type
@@ -58,6 +58,6 @@ class Parser
   end
 
   def parse_string(string)
-    binding.pry
+    Parsing.new(self, string).call
   end
 end
