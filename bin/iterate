@@ -8,8 +8,10 @@ if ARGV.include?('--no-shoes')
   require './lib/initialize'
   require './lib/null_class'
   $app, $left, $right = NullClass.new, NullClass.new, NullClass.new
+  $no_shoes = true
   require 'pry'
   Test.run_all
 else
+  $no_shoes = false
   system('cshoes ./shoes.rb')
 end

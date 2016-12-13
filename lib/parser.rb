@@ -41,6 +41,7 @@ class Parser
     buttons.button('Separator') { make(project_type, :separator, is_first) }
     buttons.button('Classifier') { make(project_type, :classifier, is_first) }
     buttons.button('Terminal') { make(project_type, :terminal, is_first) }
+    make(project_type, :collector, is_first) if $no_shoes
   end
 
   # def self.pick
