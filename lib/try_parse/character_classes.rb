@@ -1,3 +1,0 @@
-Word = /[\w]/
-Semicolon = /[;]/
-Space = /[ ]/
