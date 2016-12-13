@@ -7,6 +7,6 @@ class Parsing
   end
 
   def call
-    return Problems::AddClassifierProblem(parser) if parser.classifiers.empty?
+    return Problems::AddClassifierProblem.new(parser) if parser.classifiers.empty?
   end
 end
