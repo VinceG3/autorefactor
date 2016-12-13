@@ -1,4 +1,4 @@
 module Problems
-  class AddClassifierProblem < Problems
+  class AddClassifierProblem < Problem
   end
 end
