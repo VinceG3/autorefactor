@@ -30,6 +30,10 @@ class Parser
     YAML.load(IO.read(filename))
   end
 
+  def project
+    ProjectType.find_by_name(name)
+  end
+
   def filename
     File.join('.', 'lib', 'project_types', project.name, "#{name}.parser")
   end
