@@ -18,6 +18,7 @@ class ProjectType
   end
 
   def self.find_by_name(name)
+    binding.pry
     all.find{|project| project.name == name }
   end
 
