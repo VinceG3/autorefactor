@@ -24,7 +24,11 @@ class Develop
       Parser.pick_new(project_type, :first)
     else
       parsed = project_type.parse_text(IO.read(source))
-      binding.pry
+      if parsed.problem?
+        parsed.fix
+      else
+        binding.pry
+      end
     end
   end
 end
