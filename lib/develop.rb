@@ -16,10 +16,10 @@ class Develop
 
   def loop_until_finished
     retval = nil
-    until retval == :finished
+    loop do
       retval = iterate
       alert("noshoes is #{$noshoes.inspect}")
-      retval == :finished unless $no_shoes
+      break unless $no_shoes
     end
   end
 
