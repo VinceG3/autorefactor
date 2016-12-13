@@ -19,7 +19,7 @@ class Develop
     loop do
       retval = iterate
       alert("noshoes is #{$noshoes.inspect}")
-      break unless $no_shoes
+      break
     end
   end
 
