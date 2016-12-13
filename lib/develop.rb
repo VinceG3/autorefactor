@@ -15,7 +15,8 @@ class Develop
   end
 
   def loop_until_finished
-    until retval == finished
+    retval = nil
+    until retval == :finished
       retval = iterate
     end
   end
