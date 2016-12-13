@@ -10,6 +10,7 @@ class Parser
   end
 
   def self.create(name:, type:, project:, is_first: false)
+    binding.pry
     $right.clear
     stack = $right.stack
     stack.para "Creating!"
@@ -66,7 +67,6 @@ class Parser
 
   def self.make(project, parser_type, is_first = false)
     name = $app.ask("Please name your new #{parser_type}") || 'collector'
-    binding.pry
     create(
       name: name,
       type: parser_type,
