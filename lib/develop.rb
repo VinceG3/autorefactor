@@ -18,6 +18,7 @@ class Develop
     retval = nil
     until retval == :finished
       retval = iterate
+      retval == :finished unless $no_shoes
     end
   end
 

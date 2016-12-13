@@ -1,0 +1,6 @@
+--- !ruby/object:Parser
+file: 
+name: test_string
+type: :collector
+project_name: ruby
+is_first: :first
