@@ -6,9 +6,6 @@ require './lib/develop'
 require './lib/parser'
 require './lib/problem'
 require './lib/parsing'
-require './lib/what_next'
-require './lib/ast_node'
-require './lib/source_file'
 require './lib/project_type'
 
 Dir['./lib/problems/*.rb'].each {|f| require f }
