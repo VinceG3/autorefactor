@@ -10,7 +10,6 @@ class Parser
   end
 
   def self.create(name:, type:, project:, is_first: false)
-    binding.pry
     $right.clear
     stack = $right.stack
     stack.para "Creating!"
