@@ -36,6 +36,6 @@ class ProjectType
   end
 
   def first_parser
-    all.find{|p| p.is_first == true }
+    parsers.find{|p| p.is_first == true }
   end
 end
