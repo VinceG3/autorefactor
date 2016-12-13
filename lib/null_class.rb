@@ -6,4 +6,8 @@ class NullClass
   def para(string, *options)
     puts string
   end
+
+  def ask(string)
+    return 'test_string'
+  end
 end
