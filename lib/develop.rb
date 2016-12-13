@@ -18,7 +18,7 @@ class Develop
     retval = nil
     until retval == :finished
       retval = iterate
-      alert("noshoes is #{noshoes.inspect}")
+      alert("noshoes is #{$noshoes.inspect}")
       retval == :finished unless $no_shoes
     end
   end
