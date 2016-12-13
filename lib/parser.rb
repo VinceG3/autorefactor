@@ -10,6 +10,7 @@ class Parser
   end
 
   def self.create(name:, type:, project:, is_first: false)
+    binding.pry
     new(name: name,
         type: type,
         project_name: project.name,
@@ -43,22 +44,6 @@ class Parser
     make(project_type, :collector, is_first) if $no_shoes
   end
 
-  # def self.pick
-  #   $right.clear
-  #   parser_buttons = $right.stack
-  #   parser_buttons.para 'Pick a parser or make a new one:'
-  #   @parsers.each do |parser|
-  #     parser_buttons.button(parser.name) { parser.iterate }
-  #   end
-  #   parser_buttons.button('New Parser') { pick_new }
-  # end
-
-  def iterate
-    $right.clear
-    $right.para "Iterating #{name}"
-
-  end
-
   def self.empty?
     @parsers.empty?
   end
@@ -71,5 +56,9 @@ class Parser
       project: project,
       is_first: is_first
     )
+  end
+
+  def parse_string(string)
+    binding.pry
   end
 end

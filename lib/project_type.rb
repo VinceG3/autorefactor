@@ -30,4 +30,8 @@ class ProjectType
       .collect{|d| d.match(/\w+$/)[0] }
       .collect{|n| ProjectType.new(n) }
   end
+
+  def parse_text(string)
+    first_parser.parse_string(string)
+  end
 end
