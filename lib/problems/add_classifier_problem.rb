@@ -11,6 +11,9 @@ module Problems
       $right.clear
       stack = $right.stack
       stack.para "Classifier needed for #{parser.name}"
+      parser.project_type.classifiers.each do |classifier|
+        stack.button classifier.name
+      end
     end
   end
 end
