@@ -1,6 +1,8 @@
 class ProjectType
   attr_reader :name
 
+  ProjectsDirectory = './lib/project_types'
+
   def initialize(name)
     @name = name
   end
@@ -19,8 +21,13 @@ class ProjectType
     all.find{|project| project.name == name }
   end
 
+  def self.dirs
+    Dir['./lib/project_types/*']
+  end
+
   def self.all
-    dirs = Dir['./lib/project_types/*']
-    binding.pry
+    dirs
+      .collect{|d| d.match(/\w+$/)[0] }
+      .collect{|n| ProjectType.new(n) }
   end
 end
