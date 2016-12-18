@@ -13,5 +13,5 @@ if ARGV.include?('--no-shoes')
   Test.run_all
 else
   $no_shoes = false
-  system('cshoes -w ./shoes.rb')
+  system('cshoes ./shoes.rb')
 end
