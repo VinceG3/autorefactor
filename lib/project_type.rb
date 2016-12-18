@@ -31,6 +31,10 @@ class ProjectType
       .collect{|n| ProjectType.new(n) }
   end
 
+  def classifiers
+    Classifier.all
+  end
+
   def parse_text(string)
     first_parser.parse_string(string)
   end
