@@ -9,8 +9,8 @@ module Problems
     def fix
       $right.clear
       stack = $right.stack
-      # message = stack.para
-      # message.replace "Classifier needed for #{parser.name}"
+      message = stack.para
+      message.replace "Classifier needed for #{parser.name}"
       parser.project.classifiers.each do |classifier|
         stack.button classifier.name.demodulize {|argument| output.append(argument) }
       end
