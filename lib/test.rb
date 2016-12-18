@@ -25,7 +25,7 @@ class Test
 
   def develop_test
     develop = Develop.new(self)
-    $no_shoes ? develop.loop_until_finished : develop.iterate
+    develop.iterate
   end
 
   def run_complete
