@@ -6,7 +6,7 @@ class Classifier
     end
   end
 
-  def name
+  def self.name
     binding.pry
   end
 end
