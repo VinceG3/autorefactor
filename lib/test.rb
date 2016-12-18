@@ -24,8 +24,7 @@ class Test
   end
 
   def develop_test
-    develop = Develop.new(self)
-    develop.iterate
+    Develop.new(self).iterate
   end
 
   def run_complete
