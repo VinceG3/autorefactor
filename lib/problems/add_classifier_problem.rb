@@ -14,7 +14,7 @@ module Problems
       output = stack.para
       message.replace "Classifier needed for #{parser.name}"
       parser.project.classifiers.each do |classifier|
-        buttons.button(classifier.name.demodulize) {|argument| output.replace('argument') }
+        buttons.button(classifier.name.demodulize) {|argument| message.replace('argument') }
       end
     end
   end
