@@ -10,11 +10,12 @@ module Problems
       $right.clear
       stack = $right.stack
       message = stack.para
+      buttons = stack.stack
+      output = stack.para
       message.replace "Classifier needed for #{parser.name}"
       parser.project.classifiers.each do |classifier|
-        stack.button classifier.name.demodulize {|argument| output.append(argument) }
+        buttons.button classifier.name.demodulize {|argument| output.replace(argument) }
       end
-      output = stack.para
     end
   end
 end
