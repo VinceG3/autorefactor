@@ -1,3 +1,5 @@
-class Line < Classifier
+module Classifiers
+  class Line < Classifier
 
+  end
 end
