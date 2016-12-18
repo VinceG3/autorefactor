@@ -5,4 +5,8 @@ class Classifier
       Classifiers.const_get(sym)
     end
   end
+
+  def name
+    binding.pry
+  end
 end
