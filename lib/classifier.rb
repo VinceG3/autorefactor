@@ -1,8 +1,8 @@
 class Classifier
   ClassifierDirectory = './lib/classifiers'
   def self.all
-    Classifiers.constants.each do |sym|
-      binding.pry
+    Classifiers.constants.collect do |sym|
+      Classifiers.const_get(sym)
     end
   end
 end
