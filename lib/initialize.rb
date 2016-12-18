@@ -11,3 +11,4 @@ require './lib/project_type'
 
 Dir['./lib/problems/*.rb'].each {|f| require f }
 Dir['./lib/ruby/*.rb'].each {|f| require f }
+Dir['./lib/classifiers/*.rb'].each {|f| require f }
