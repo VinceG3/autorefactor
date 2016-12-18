@@ -15,7 +15,7 @@ module Problems
       message.replace "Classifier needed for #{parser.name}"
       parser.project.classifiers.each do |classifier|
         buttons.button(classifier.name.demodulize) do |button|
-          info "hi"
+          $app.info "hi"
           output.replace(button.gui.inspect)
         end
       end
