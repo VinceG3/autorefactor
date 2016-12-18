@@ -11,8 +11,9 @@ module Problems
       stack = $right.stack
       stack.para "Classifier needed for #{parser.name}"
       parser.project.classifiers.each do |classifier|
-        stack.button classifier.name.demodulize {|argument| $app.alert(argument) }
+        stack.button classifier.name.demodulize {|argument| output.append(argument) }
       end
+      output = stack.para
     end
   end
 end
