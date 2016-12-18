@@ -11,6 +11,7 @@ module Problems
       stack = $right.stack
       stack.para "Classifier needed for #{parser.name}"
       parser.project.classifiers.each do |classifier|
+        binding.pry
         stack.button classifier.name
       end
     end
