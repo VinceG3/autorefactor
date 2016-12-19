@@ -73,7 +73,7 @@ class Parser
         add_classifier(classifier)
       end
     end
-    add_classifier(nil)
+    add_classifier(Classifiers::Line)
   end
 
   def add_classifier(classifier)
