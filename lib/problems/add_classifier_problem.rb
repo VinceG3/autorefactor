@@ -7,8 +7,12 @@ module Problems
     end
 
     def fix
-      binding.pry
-      parser.select_classifier
+      parser.select_classifier(&:fixed)
+    end
+
+    def fixed
+      puts 'hi'
+      $app.alert('hi')
     end
   end
 end
