@@ -67,7 +67,7 @@ class Parser
     message = stack.para
     buttons = stack.stack
     output = stack.para
-    message.replace "Classifier needed for #{parser.name}"
+    message.replace "Classifier needed for #{name}"
     project.classifiers.each do |classifier|
       buttons.button(classifier.name.demodulize) do |button|
         output.replace(classifier.name.demodulize)
