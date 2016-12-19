@@ -13,11 +13,7 @@ module Problems
       buttons = stack.stack
       output = stack.para
       message.replace "Classifier needed for #{parser.name}"
-      parser.project.classifiers.each do |classifier|
-        buttons.button(classifier.name.demodulize) do |button|
-          output.replace(classifier.name.demodulize)
-        end
-      end
+      parser.add_classifier
     end
   end
 end

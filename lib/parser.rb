@@ -60,4 +60,12 @@ class Parser
   def parse_string(string)
     Parsing.new(self, string).call
   end
+
+  def add_classifier
+    parser.project.classifiers.each do |classifier|
+      buttons.button(classifier.name.demodulize) do |button|
+        output.replace(classifier.name.demodulize)
+      end
+    end
+  end
 end
