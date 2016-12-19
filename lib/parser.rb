@@ -62,6 +62,12 @@ class Parser
   end
 
   def add_classifier
+    $right.clear
+    stack = $right.stack
+    message = stack.para
+    buttons = stack.stack
+    output = stack.para
+    message.replace "Classifier needed for #{parser.name}"
     project.classifiers.each do |classifier|
       buttons.button(classifier.name.demodulize) do |button|
         output.replace(classifier.name.demodulize)

@@ -7,12 +7,6 @@ module Problems
     end
 
     def fix
-      $right.clear
-      stack = $right.stack
-      message = stack.para
-      buttons = stack.stack
-      output = stack.para
-      message.replace "Classifier needed for #{parser.name}"
       parser.add_classifier
     end
   end
