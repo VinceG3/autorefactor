@@ -62,7 +62,6 @@ class Parser
   end
 
   def select_classifier(cb = nil)
-    binding.pry
     $right.clear
     stack = $right.stack
     message = stack.para
@@ -72,9 +71,9 @@ class Parser
     project.classifiers.each do |classifier|
       buttons.button(classifier.name.demodulize) do
         add_classifier(classifier)
+        cb.call
       end
     end
-    add_classifier(Classifiers::Line)
   end
 
   def add_classifier(classifier)

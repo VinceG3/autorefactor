@@ -11,8 +11,7 @@ module Problems
     end
 
     def fixed
-      puts 'hi'
-      $app.alert('hi')
+      parser.save
     end
   end
 end
