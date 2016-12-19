@@ -61,7 +61,7 @@ class Parser
     Parsing.new(self, string).call
   end
 
-  def add_classifier
+  def select_classifier
     $right.clear
     stack = $right.stack
     message = stack.para
@@ -69,9 +69,14 @@ class Parser
     output = stack.para
     message.replace "Classifier needed for #{name}"
     project.classifiers.each do |classifier|
-      buttons.button(classifier.name.demodulize) do |button|
-        output.replace(classifier.name.demodulize)
+      buttons.button(classifier.name.demodulize) do
+        add_classifier(classifier)
       end
     end
+    add_classifier(nil)
+  end
+
+  def add_classifier(classifier)
+    binding.pry
   end
 end

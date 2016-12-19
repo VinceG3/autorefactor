@@ -7,7 +7,7 @@ module Problems
     end
 
     def fix
-      parser.add_classifier
+      parser.select_classifier
     end
   end
 end
