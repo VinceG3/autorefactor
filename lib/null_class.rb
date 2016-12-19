@@ -3,7 +3,7 @@ class NullClass
     return self.class.new
   end
 
-  def para(string, *options)
+  def para(string = '', *options)
     puts string
   end
 
