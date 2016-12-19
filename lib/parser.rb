@@ -77,6 +77,6 @@ class Parser
   end
 
   def add_classifier(classifier)
-    binding.pry
+    classifiers << classifier.new
   end
 end
