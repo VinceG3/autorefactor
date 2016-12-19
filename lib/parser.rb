@@ -62,7 +62,7 @@ class Parser
   end
 
   def add_classifier
-    parser.project.classifiers.each do |classifier|
+    project.classifiers.each do |classifier|
       buttons.button(classifier.name.demodulize) do |button|
         output.replace(classifier.name.demodulize)
       end
