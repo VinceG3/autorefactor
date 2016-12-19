@@ -61,7 +61,7 @@ class Parser
     Parsing.new(self, string).call
   end
 
-  def select_classifier
+  def select_classifier(cb = nil)
     binding.pry
     $right.clear
     stack = $right.stack
