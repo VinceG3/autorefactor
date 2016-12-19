@@ -7,7 +7,7 @@ module Problems
     end
 
     def fix
-      parser.select_classifier(&:fixed)
+      parser.select_classifier(method(:fixed))
     end
 
     def fixed
