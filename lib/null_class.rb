@@ -5,6 +5,7 @@ class NullClass
 
   def para(string = '', *options)
     puts string
+    return self
   end
 
   def ask(string)
@@ -13,5 +14,6 @@ class NullClass
 
   def button(name)
     puts "button: #{name}"
+    return self
   end
 end
